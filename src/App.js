@@ -1,23 +1,63 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
+import { Switch, Route } from 'react-router';
+import {Login} from "./Components/Login";
+import {Register} from "./Components/Register";
 
-function App() {
+
+
+export const App = () => {
+
+
+
+   let token = () => {
+    const jwt = localStorage.getItem('token');
+    try  {
+      const user = jwtDecode(jwt);
+      this.setState({
+        userLoggedIn: user
+      });
+      return user.id;
+    }catch(error){
+      console.log(error, "error with token function");
+    }
+  }
+
+  const registerNewUser = async (userToBeRegisteredObject) => {
+    try {
+      const response = await axios.post('https://localhost:44394/api/authentication' , userToBeRegisteredObject);
+      this.loginUser({'userName' : userToBeRegisteredObject.userName, 'password': userToBeRegisteredObject.password })
+      window.location = '/register';
+    } catch(error) {
+      console.log(error, 'error with register user');
+    }
+  }
+
+  const loginUser = async (loggedInUserObject) => {
+    console.log("Inside loginuser function app.js line 10");
+    console.log("object", loggedInUserObject)
+    try {
+      const response = await axios.post('https://localhost:44394/api/authentication/login/', loggedInUserObject);
+      localStorage.setItem('token', response.data.token);
+      this.token();
+      this.getUserDetails(this.state.userLoggin.id);
+      console.log("login state user: ", this.state.userLoggedIn)
+    } catch(error) {
+      console.log(error, 'error with logged in user');
+      return error
+    }
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        <Route path="/login" render={props => <Login {...props} loginUser={this.loginUser} /> } />
+        <Route path="/register" render={props => <Register {...props} registerNewUser={this.registerNewUser} /> } />
+
+      </Switch>
     </div>
   );
 }
