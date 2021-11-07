@@ -34,7 +34,7 @@ const getUserDetails = async (userId) => {
   // const jwt = localStorage.getItem('token');
   console.log("User id", userId)
   try {
-    let response = await axios.get(`http://127.0.0.1:8000/api/users/${userId}`);
+    let response = await axios.get(`http://127.0.0.1:8000/api/auth/users/${userId}`);
     console.log("*** RESPONSE DATA ****", response.data);
     return response.data;
   }
