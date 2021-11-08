@@ -5,6 +5,8 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {Register} from "./Components/Register";
 import {Login} from "./Components/Login";
+import {Home} from "./Components/Home";
+import {NavBar} from "./Components/NavBar";
 
 // auth helper functions
 const getAuthToken = () => {
@@ -14,6 +16,8 @@ const getAuthToken = () => {
 const setAuthToken = (token) => {
   localStorage.setItem('token', token);
 }
+
+
 
 const getLoggedInUserId = () => {
   const token = getAuthToken();
@@ -71,13 +75,17 @@ export const App = () => {
 }
 
   const registerUser = async (registerRequest) => {
+    console.log("line 76")
     try {
+      console.log("try clause")
       const response = await axios.post('http://127.0.0.1:8000/api/auth/register/' , registerRequest);
+      console.log("line 78");
       await loginUser({
-        userName: registerRequest.userName,
-        password: registerRequest.password
+        'username': registerRequest.username,
+        'password': registerRequest.password
       });
-    //  window.location = '/register';
+      console.log(registerRequest, "line 82");
+    window.location = '/register';
     } catch(error) {
       console.log(error, 'error with register user');
     }
@@ -86,12 +94,16 @@ export const App = () => {
   return (
     <div>
       <header>
+
         {JSON.stringify(user)}
         <Router>
+          <NavBar />
+
           <Routes>
+            <Route exact path="/" element={<Home/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser} />} />
             <Route exact path="/login" element={<Login loginUser={loginUser} />} />
-            <Route exact path="/" element={<>index</>} />
+            {/*<Route exact path="/" element={<>index</>} />*/}
           </Routes>
         </Router>
       </header>
@@ -99,35 +111,3 @@ export const App = () => {
   );
 }
 
-
-{/*<Route path="/login" render={props => <Login {...props} loginUser={this.loginUser} /> } />*/}
-
-//  let token = () => {
-//   const jwt = localStorage.getItem('token');
-//   try  {
-//     const user = jwtDecode(jwt);
-//     this.setState({
-//       userLoggedIn: user
-//     });
-//     return user.id;
-//   }catch(error){
-//     console.log(error, "error with token function");
-//   }
-// }
-
-
-
-// const loginUser = async (loggedInUserObject) => {
-//   console.log("Inside loginuser function app.js line 10");
-//   console.log("object", loggedInUserObject)
-//   try {
-//     const response = await axios.post('https://localhost:44394/api/authentication/login/', loggedInUserObject);
-//     localStorage.setItem('token', response.data.token);
-//     this.token();
-//     this.getUserDetails(this.state.userLoggin.id);
-//     console.log("login state user: ", this.state.userLoggedIn)
-//   } catch(error) {
-//     console.log(error, 'error with logged in user');
-//     return error
-//   }
-// }
