@@ -29,22 +29,22 @@ export const Register = (props) => {
         <div className = "Register-Container">
 
           <form action="" onSubmit={handleSubmit} >
-            <label for="">User Name</label>
+            <label htmlFor="">User Name</label>
             <input className = "Register-Input" name="username" value={registerRequest.username} onChange={handleChange} type="text"/>
             <br/>
-            <label htmlFor="">Last Name</label>
+            <label htmlFor="">Password</label>
             <input className = "Register-Input"  name="password" value={registerRequest.password} onChange={handleChange} type="text"/>
             <br/>
-            <label htmlFor="">User Name</label>
+            <label htmlFor="">Email</label>
             <input className = "Register-Input" name="email" value={registerRequest.email} onChange={handleChange} type="text"/>
             <br/>
-            <label htmlFor="">Password</label>
+            <label htmlFor="">First Name</label>
             <input className = "Register-Input" name="first_name" value={registerRequest.first_name} onChange={handleChange} type="text"/>
             <br/>
-            <label htmlFor="">Email</label>
+            <label htmlFor="">Last Name</label>
             <input className = "Register-Input" name="last_name" value={registerRequest.last_name} onChange={handleChange} type="text"/>
             <br/>
-            <label htmlFor="">Phone Number</label>
+            <label htmlFor="">Middle Name</label>
             <input className = "Register-Input" name="middle_name" value={registerRequest.middle_name} onChange={handleChange} type="text"/>
             <br/>
             <label htmlFor="">Favorite Game</label>
