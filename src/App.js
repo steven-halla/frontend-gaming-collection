@@ -89,7 +89,7 @@ export const App = () => {
     <div>
       <header>
         <Router>
-          <NavBar/>
+          <NavBar user={user} setUser={setUser} />
 
           <Routes>
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
