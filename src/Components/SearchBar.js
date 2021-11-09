@@ -1,26 +1,59 @@
 import React, {useState} from 'react';
 
 export const SearchBar = (props) => {
-  const {setSearchResults} = props;
   const [searchQuery, setSearchQuery] = useState("");
 
-  const searchGames = async (searchQuery) => {
-    return response.data;
-  }
 
-  const searchAndSetGameListState = async (event) => {
-    event.preventDefault();
-    const games = await searchGames(searchQuery);
-    setSearchResults(games);
-  }
 
   return (
     <div>
-      <h1>Video Games Search</h1>
-      <form action="" method="get" onSubmit={searchAndSetGameListState}>
-      <input type="text" name="search" value="searchQuery" onChange={(e) => setSearchQuery(e.target.value)}/>
-      <button type="submit" onClick={searchAndSetGameListState}>Search</button>
-      </form>
+      <p>Hi Im a search bar</p>
+      <input
+        type="text"
+        placeholder="Search by game info"
+        onChange={(event) => {
+          setSearchQuery(event.target.value);
+        }}
+      />
+      <table>
+        {props.games
+          .filter((foundGames) => {
+            if (searchQuery === "") {
+              return foundGames;
+            } else if (
+              foundGames.title
+                .toLowerCase()
+                .includes(searchQuery.toLocaleLowerCase()) ||
+              foundGames.genre
+                .toLowerCase()
+                .includes(searchQuery.toLocaleLowerCase())
+            ) {
+              return foundGames;
+            }
+          })
+          .map((game) => (
+            <tr key={game.id}>
+              <td>
+                <div className="border">
+                  <p>Title:{game.title}</p>
+                  <p>Value: {game.value}</p>
+                  <p>Genre: {game.genre}</p>
+                </div>
+              </td>
+            </tr>
+          ))}
+      </table>
     </div>
-  )
-}
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
