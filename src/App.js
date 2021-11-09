@@ -114,7 +114,7 @@ export const App = () => {
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} setUser={setUser} games={games} setGames={setGames}/>}/>
 
-            <Route exact path="/games"   element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
+            <Route exact path="/games"   element={<GamesListView   getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
             {/*<Route exact path="/" element={<>index</>} />*/}
           </Routes>
         </Router>

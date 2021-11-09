@@ -50,20 +50,14 @@ export const NavBar = (props) => {
         <div className="link">
           <Link to="/">Home</Link>
         </div>
-        <div>
+        <div className="link">
           <Link to="/games">Games List View</Link>
         </div>
-        <br/>
-        <div>
+        <div className="link">
           <Link to="/profile">Profile view</Link>
         </div>
-
-
-
         {
           user != null ? (
-
-
             <div className="link" onClick={() => handleLogoutClick()}>
               <Link to="#">Logout</Link>
             </div>
@@ -75,6 +69,5 @@ export const NavBar = (props) => {
         }
       </div>
     </StyledNavBar>
-
   )
 }
