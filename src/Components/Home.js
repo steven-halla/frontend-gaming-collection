@@ -1,11 +1,12 @@
 import React from "react";
 
 export const Home = (props) => {
-  console.log(props.user)
+  const user = props.user;
+
   return (
     <div>
       <p>Welcome to the home page</p>
-      <p>Hello user: {props.username}</p>
+      <p>Hello {user?.username}</p>
     </div>
   )
 }
