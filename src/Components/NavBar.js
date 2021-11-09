@@ -8,6 +8,7 @@ const StyledNavBar = styled.div`
   .links {
     width: 100%;
     height: 50px;
+    background-color: #61dafb;
     
     display: flex;
     flex-flow: row nowrap;
@@ -34,6 +35,7 @@ const StyledNavBar = styled.div`
 
 export const NavBar = (props) => {
   const {user, setUser} = props;
+
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
@@ -48,9 +50,16 @@ export const NavBar = (props) => {
         <div className="link">
           <Link to="/">Home</Link>
         </div>
+        <div>
+          <Link to="/games">Games List View</Link>
+        </div>
+
+
 
         {
           user != null ? (
+
+
             <div className="link" onClick={() => handleLogoutClick()}>
               <Link to="#">Logout</Link>
             </div>

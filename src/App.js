@@ -8,10 +8,13 @@ import {Login} from "./Components/Login";
 import {Home} from "./Components/Home";
 import {NavBar} from "./Components/NavBar";
 import {getAuthToken, setAuthToken} from "./Auth";
+import {GamesListView} from "./Components/GamesListView";
 
 
 export const App = () => {
   const [user, setUser] = useState(null);
+  const [games, setGames] = useState([]);
+
 
   useEffect(() => {
     const userId = getLoggedInUserId();
@@ -23,6 +26,13 @@ export const App = () => {
       });
     }
 
+  }, []);
+
+  useEffect(() => {
+    getAllGames()
+      .then(response => {
+        setGames(response.data)
+      })
   }, []);
 
   const getLoggedInUserId = () => {
@@ -85,6 +95,11 @@ export const App = () => {
     }
   }
 
+  const getAllGames = async () => {
+    console.log("get all games function start");
+    return axios.get(`http://127.0.0.1:8000/api/games/`);
+  }
+
   return (
     <div>
       <header>
@@ -95,6 +110,7 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
+            <Route exact path="/games" element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}/>}/>
             {/*<Route exact path="/" element={<>index</>} />*/}
           </Routes>
         </Router>
