@@ -62,7 +62,7 @@ export const App = () => {
     const response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginRequest);
     console.log("login response", response);
     setAuthToken(response.data.access);
-    getLoggedInUserId()
+
 
     // get user based on jwt.id (the user's id)
     //const user = await getUserDetails(user);
@@ -75,10 +75,13 @@ export const App = () => {
     return error
   }
 }
- // useEffect(()=>{
- //   getLoggedInUserId()
- //   console.log(user)
- // }, [user])
+ useEffect(()=>{
+   getLoggedInUserId()
+   console.log(user)
+ }, [user])
+
+
+
 
   const registerUser = async (registerRequest) => {
     console.log(registerRequest)
