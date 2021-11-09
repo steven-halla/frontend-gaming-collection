@@ -53,6 +53,10 @@ export const NavBar = (props) => {
         <div>
           <Link to="/games">Games List View</Link>
         </div>
+        <br/>
+        <div>
+          <Link to="/profile">Profile view</Link>
+        </div>
 
 
 

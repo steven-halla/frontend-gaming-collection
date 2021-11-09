@@ -18,8 +18,4 @@ export const GamesListView = (props) => {
   } else {
     return <div>Loading...</div>
   }
-
-
-
-
 }

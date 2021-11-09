@@ -9,6 +9,8 @@ import {Home} from "./Components/Home";
 import {NavBar} from "./Components/NavBar";
 import {getAuthToken, setAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
+import {SearchBar} from "./Components/SearchBar";
+import {ProfileView} from "./Components/ProfileView";
 
 
 export const App = () => {
@@ -110,7 +112,9 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
-            <Route exact path="/games" element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}/>}/>
+            <Route exact path="/profile" element={<ProfileView user={user} setUser={setUser} games={games} setGames={setGames}/>}/>
+
+            <Route exact path="/games"   element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
             {/*<Route exact path="/" element={<>index</>} />*/}
           </Routes>
         </Router>
