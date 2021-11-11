@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {SearchBar} from "./SearchBar";
+import {Link} from "react-router-dom";
 
 export const GamesListView = (props) => {
   const games = props.games;
@@ -58,6 +59,15 @@ export const GamesListView = (props) => {
                   <p>Genre: {game.genre}</p>
                 </div>
               </td>
+              <td >
+                  <button
+
+                    // onClick={() => props.addGameToCollection(game.id)}
+                  >
+                    Add to game list
+                  </button>
+              </td>
+
             </tr>
           ))}
       </table>

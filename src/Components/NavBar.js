@@ -7,7 +7,7 @@ import styled from "styled-components";
 const StyledNavBar = styled.div`
   .links {
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: #61dafb;
     
     display: flex;
@@ -16,6 +16,8 @@ const StyledNavBar = styled.div`
     
     .link {
       padding: 10px;
+      font-family: "Impact";
+      font-size: x-large;
       
       a {
         color: black;

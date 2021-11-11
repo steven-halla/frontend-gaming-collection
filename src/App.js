@@ -16,6 +16,7 @@ import {ProfileView} from "./Components/ProfileView";
 export const App = () => {
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
+  const [gamesOwned, setGamesOwned] = useState([]);
 
 
   useEffect(() => {
@@ -102,6 +103,11 @@ export const App = () => {
     return axios.get(`http://127.0.0.1:8000/api/games/`);
   }
 
+  const getAllGamesOwned = async (userId) => {
+    console.log("get all games owned function start");
+    return axios.get(`http://127.0.0.1:8000/api/games_owned/user/${userId}/`)
+  }
+
   return (
     <div>
       <header>
@@ -112,10 +118,11 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
-            <Route exact path="/profile" element={<ProfileView user={user} setUser={setUser} games={games} setGames={setGames}/>}/>
-
+            <Route exact path="/profile" element={<ProfileView user={user} setUser={setUser} games={games} setGames={setGames} getAllGamesOwned={getAllGamesOwned} gamesOwned={gamesOwned} setGamesOwned={setGamesOwned} /> }/>
             <Route exact path="/games"   element={<GamesListView   getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
+
             {/*<Route exact path="/" element={<>index</>} />*/}
+
           </Routes>
         </Router>
       </header>
