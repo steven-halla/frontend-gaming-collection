@@ -4,17 +4,40 @@ import styled from "styled-components";
 
 const StyledHome = styled.div`
   .wrapper {
+    
     background-color: honeydew;
     height: 100vh;
     
     .main-text {
+      display: flex;
       background-color: blue;
       height: 30vh;
+      
+      .maintext-content {
+        background-color: gold;
+        height: 10vh;
+        width: 40vh;
+      }
     }
     
-    .image-container-1 {
+    .main-image-box {
+      display: flex;
       background-color: red;
-      height: 40vh;
+      width: 100%;
+      height: 30vh;
+      
+      .image-container {
+        background-color: violet;
+        height: 30vh;
+        width: 20vh;
+      }
+      
+      .image-container-2 {
+        background-color: rebeccapurple;
+        height: 30vh;
+        width: 20vh;
+        margin-left: auto;
+      }
     }
     
     .third-container {
@@ -39,19 +62,21 @@ export const Home = (props) => {
       <div className="wrapper">
 
         <div className="main-text">
-
+          <div className="maintext-content">
+              <p>I am a content box that will have the main paragraph for this site</p>
+          </div>
         </div>
-        <div className="image-container-1">
+
+        <div className="main-image-box">
           <div className="image-container">
 
           </div>
-          <div>
 
-          </div>
-          <div>
-
+          <div className="image-container-2">
+            <p>I am image container 2</p>
           </div>
         </div>
+
         <div className="third-container">
           <div className="left-content">
 

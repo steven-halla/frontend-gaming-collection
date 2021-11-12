@@ -34,8 +34,16 @@ export const App = () => {
   useEffect(() => {
     getAllGames()
       .then(response => {
-        setGames(response.data)
-      })
+        setGames(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    const userId = getLoggedInUserId();
+    getAllGamesOwned(userId)
+      .then(response => {
+        setGamesOwned(response.data);
+      });
   }, []);
 
   const getLoggedInUserId = () => {
@@ -118,8 +126,8 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
-            <Route exact path="/profile" element={<ProfileView user={user} setUser={setUser} games={games} setGames={setGames} getAllGamesOwned={getAllGamesOwned} gamesOwned={gamesOwned} setGamesOwned={setGamesOwned} /> }/>
-            <Route exact path="/games"   element={<GamesListView   getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
+            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} /> }/>
+            <Route exact path="/games"   element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
 
             {/*<Route exact path="/" element={<>index</>} />*/}
 
