@@ -33,9 +33,10 @@ const StyledFooter = styled.div `
     
     .contact-me-info-container {
       background-color: violet;
-      //height: 22vh;
+      height: 22vh;
       //width: 20vh;
-      margin: auto;
+      //margin: auto;
+      //margin-left: 350px;
     
       
     }

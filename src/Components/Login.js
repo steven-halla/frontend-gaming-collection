@@ -14,17 +14,33 @@ const LoginDiv = styled.div`
   justify-content:center;
   align-items:center;
   height:100vh;
+  //width: 100vh;
 
+  .LoginBox {
+    height: 40vh;
+    width: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 12px 17px #888888;
+
+
+    .Input{
+      width: 100%;
+      padding: 12px 20px;
+      // margin: 8px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box
+    }
+  }
+  
+ 
 }
 
-.loginInput{
-  width: 100%;
-  padding: 12px 20px;
-  // margin: 8px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box
-}
+
 `
 
 export const Login = (props) => {
@@ -49,24 +65,26 @@ export const Login = (props) => {
     <div>
       <LoginDiv>
         <div className="LoginContainer">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">username</label>
-            <input className="loginInput"
-                   name="username"
-                   value={loginRequest.username}
-                   onChange={handleChange}
-                   type="text"
-            />
-            <br/>
-            <label htmlFor="password">password</label>
-            <input className="password-input"
-                   name="password"
-                   value={loginRequest.password}
-                   onChange={handleChange}
-                   type="password"
-            />
-            <button type="submit">submit</button>
-          </form>
+          <div className="LoginBox">
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="username">username</label>
+              <input className="Input"
+                     name="username"
+                     value={loginRequest.username}
+                     onChange={handleChange}
+                     type="text"
+              />
+              <br/>
+              <label htmlFor="password">password</label>
+              <input className="Input"
+                     name="password"
+                     value={loginRequest.password}
+                     onChange={handleChange}
+                     type="password"
+              />
+              <button type="submit">submit</button>
+            </form>
+          </div>
         </div>
       </LoginDiv>
     </div>

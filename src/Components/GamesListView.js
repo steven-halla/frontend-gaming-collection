@@ -32,9 +32,15 @@ export const GamesListView = (props) => {
           <tr key={game.id}>
             <td>
               <div className="border">
+                <img src="" alt=""/>
                 <p>Title:{game.title}</p>
-                <p>Value: {game.value}</p>
+                <p>Publisher: {game.publisher}</p>
                 <p>Genre: {game.genre}</p>
+                <p>System: {game.system}</p>
+                <p>Release Date: {game.release_date}</p>
+                <p>Value: {game.value}</p>
+                <p>Rating: {game.rating}</p>
+
               </div>
             </td>
             <td>
