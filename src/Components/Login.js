@@ -1,4 +1,31 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+
+
+const LoginDiv = styled.div`
+
+.LoginContainer{
+  width: 100%;
+  // height: 100%;
+  background-color: #eeeeee;
+  color: red;
+  display:flex; 
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+
+}
+
+.loginInput{
+  width: 100%;
+  padding: 12px 20px;
+  // margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box
+}
+`
 
 export const Login = (props) => {
   const [loginRequest, setLoginRequest] = useState({username: "", password: ""});
@@ -20,25 +47,30 @@ export const Login = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
-        <input className="login-Input"
-               name="username"
-               value={loginRequest.username}
-               onChange={handleChange}
-               type="text"
-        />
-        <br/>
-        <label htmlFor="password">password</label>
-        <input className="password-input"
-               name="password"
-               value={loginRequest.password}
-               onChange={handleChange}
-               type="password"
-        />
-        <button type="submit">submit</button>
-      </form>
+      <LoginDiv>
+        <div className="LoginContainer">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">username</label>
+            <input className="loginInput"
+                   name="username"
+                   value={loginRequest.username}
+                   onChange={handleChange}
+                   type="text"
+            />
+            <br/>
+            <label htmlFor="password">password</label>
+            <input className="password-input"
+                   name="password"
+                   value={loginRequest.password}
+                   onChange={handleChange}
+                   type="password"
+            />
+            <button type="submit">submit</button>
+          </form>
+        </div>
+      </LoginDiv>
     </div>
+
   );
 
 }
