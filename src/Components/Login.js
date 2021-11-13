@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-
-
 const LoginDiv = styled.div`
 
 .LoginContainer{
@@ -25,8 +23,7 @@ const LoginDiv = styled.div`
     border: 1px solid black;
     padding: 10px;
     box-shadow: 12px 17px #888888;
-
-
+    
     .Input{
       width: 100%;
       padding: 12px 20px;
@@ -36,11 +33,7 @@ const LoginDiv = styled.div`
       box-sizing: border-box
     }
   }
-  
- 
 }
-
-
 `
 
 export const Login = (props) => {
