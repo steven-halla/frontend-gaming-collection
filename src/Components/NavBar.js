@@ -32,6 +32,11 @@ const StyledNavBar = styled.div`
         margin-left: auto;
       }
     }
+    
+    .app-title {
+      font-family: sans-serif;
+      font-size: x-large;
+    }
   }
 `;
 
@@ -57,6 +62,9 @@ export const NavBar = (props) => {
         </div>
         <div className="link">
           <Link to="/profile">Profile view</Link>
+        </div>
+        <div className="app-title">
+          <p>Game Booky</p>
         </div>
         {
           user != null ? (
