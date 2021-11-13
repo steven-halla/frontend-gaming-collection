@@ -40,10 +40,7 @@ export const App = () => {
 
   useEffect(() => {
     const userId = getLoggedInUserId();
-    getAllGamesOwned(userId)
-      .then(response => {
-        setGamesOwned(response.data);
-      });
+    getAllGamesOwned(userId);
   }, []);
 
   const getLoggedInUserId = () => {
@@ -112,9 +109,28 @@ export const App = () => {
   }
 
   const getAllGamesOwned = async (userId) => {
-    console.log("get all games owned function start");
-    return axios.get(`http://127.0.0.1:8000/api/games_owned/user/${userId}/`)
+    console.log("get all games owned function start, user: " + userId);
+    let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/user/${userId}/`)
+    setGamesOwned(response.data);
   }
+
+  const deleteGame = async (gamesOwnedId) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`);
+      console.log("i just did an axios call for delete")
+     // await getAllGamesOwned(user.id);
+
+      // instead of reloading all games owned via getAllGamesOwned which updates the gamesOwned state,
+      // I'm deleting the game from the gamesOwned state by id.
+      setGamesOwned(
+        gamesOwned.filter(game => game.id !== gamesOwnedId)
+      );
+
+    } catch (ex) {
+      console.log('Error in Delete Call', ex);
+    }
+  }
+
 
   return (
     <div>
@@ -126,8 +142,8 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
-            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} /> }/>
-            <Route exact path="/games"   element={<GamesListView getAllGames={getAllGames} games={games}  setGames={setGames}  />  }/>
+            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
+            <Route exact path="/games" element={<GamesListView games={games} />  }/>
 
             {/*<Route exact path="/" element={<>index</>} />*/}
 

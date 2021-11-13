@@ -32,12 +32,34 @@ const StyledHome = styled.div`
         width: 20vh;
       }
       
+      .image-container-middle {
+        background-color: chocolate;
+        height: 30vh;
+        width: 20vh;
+      }
+      
       .image-container-2 {
         background-color: rebeccapurple;
         height: 30vh;
         width: 20vh;
         margin-left: auto;
       }
+
+  
+      
+      .image-box-message-container {
+        background-color: #282c34;
+        height: 20vh;
+        width: 30vh;
+      }
+
+      .image-box-message-container-2 {
+        background-color: #282c34;
+        height: 20vh;
+        width: 30vh;
+      }
+      
+      
     }
     
     .third-container {
@@ -69,25 +91,31 @@ export const Home = (props) => {
 
         <div className="main-image-box">
           <div className="image-container">
-
+            <p>I am image container 1</p>
           </div>
+
+          <div className="image-box-message-container">
+            <p>I will hold some more text</p>
+          </div>
+
+
+          <div className="image-container-middle">
+            <p> I hold middle image</p>
+          </div>
+
+          <div className="image-box-message-container-2">
+            <p>I will hold some more text</p>
+          </div>
+
 
           <div className="image-container-2">
             <p>I am image container 2</p>
           </div>
+
+
         </div>
 
-        <div className="third-container">
-          <div className="left-content">
 
-          </div>
-          <div className="middle-content">
-
-          </div>
-          <div className="right-content">
-
-          </div>
-        </div>
 
         <div className="image-3">
           <div className="centered-content">
@@ -95,7 +123,7 @@ export const Home = (props) => {
           </div>
         </div>
         <div className="footer">
-
+            <p>I am footer I'll have lots of stuff soon</p>
         </div>
       </div>
     </StyledHome>
