@@ -11,6 +11,7 @@ import {getAuthToken, setAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
 import {SearchBar} from "./Components/SearchBar";
 import {ProfileView} from "./Components/ProfileView";
+import {GameView} from "./Components/GameView";
 
 
 export const App = () => {
@@ -175,7 +176,7 @@ export const App = () => {
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
             <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
-
+            <Route exact path="/game" element={<GameView    />}/>
             {/*<Route exact path="/" element={<>index</>} />*/}
 
           </Routes>
