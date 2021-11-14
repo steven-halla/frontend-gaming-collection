@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import _ from "lodash";
@@ -58,14 +58,39 @@ export const ProfileView = (props) => {
       }
     });
 
+  const [review, setReview] = useState({
+    body : " ",
+    starRating : " "
+
+  });
+
+  const handleChange = (event) => {
+    setReview(previousState => ({
+      ...previousState,
+      [event.target.name] : event.target.value
+    }) );
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // const rating = parseInt(gamesOwned.review);
+    //
+    // const newReview = {
+    //   review : newReview,
+    //   // might need to use parse int for start rating for value
+    //   rating : rating,
+    //
+    // }
+
+  }
+
   return (
     <div>
       <p>Welcome to the user profile page</p>
       <p>Name: {user?.username}</p>
       <p>favorite game: {user?.favorite_game}</p>
-      <p>Users will be able to add games to their collection</p>
       <p>Users will be able to leave reviews for games they own, as well as leave a rating</p>
-      <p>User has the following games: {user?.gamesOwned}</p>
+      <p>Users will be able to view game reviews and ratings</p>
       <p>Total value of collection is: {totalGameValue} </p>
 
       <div className="game-value-by-genre">
@@ -85,16 +110,32 @@ export const ProfileView = (props) => {
       <table>
         {gamesOwned.map((ownedGame) => {
             // rename "id" as "ownedGameId" when destructuring from "ownedGame"
-            const {id: gamesOwnedId, game} = ownedGame;
+            const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
             return (
               <tr>
                 <td>
-                  <p>Id: {gamesOwnedId}</p>
+                  {/*<p>Id: {gamesOwnedId}</p>*/}
+                  <p>Id: {game.id}</p>
                   <p>Title: {game.title}</p>
-                  <p>GameId: {game.id}</p>
+                  <p>Rating: {owner_rating}</p>
+                  <p>Review: {review}</p>
                   <p>Genre: {game.genre}</p>
                   <p>Value: {game.value}</p>
                   <button onClick={() => props.deleteGame(gamesOwnedId)}>Delete</button>
+                  <form action="" onSubmit={handleSubmit}>
+                    <p>Leave or update a review:</p>
+                    <label htmlFor="review">Review</label>
+                    <input type="text" value={ownedGame.review} />
+                    <label htmlFor="">Rating:</label>
+                    <select name="starRating" id="starRating" value={ownedGame.owner_rating}  onChange={handleChange} >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                    <button type="submit">submit changes</button>
+                  </form>
                 </td>
               </tr>
             );

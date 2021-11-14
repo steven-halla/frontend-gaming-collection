@@ -2,6 +2,7 @@ import React, {useState} from "react"
 
 export const GamesListView = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const {addGameToCollection} = props;
 
   console.log(props.games);
 
@@ -29,33 +30,42 @@ export const GamesListView = (props) => {
       />
       <table>
         {filteredGames.map((game) => (
-          <tr key={game.id}>
-            <td>
-              <div className="border">
-                <img src="" alt=""/>
-                <p>Title:{game.title}</p>
-                <p>Publisher: {game.publisher}</p>
-                <p>Genre: {game.genre}</p>
-                <p>System: {game.system}</p>
-                <p>Release Date: {game.release_date}</p>
-                <p>Value: {game.value}</p>
-                <p>Rating: {game.rating}</p>
-
-              </div>
-            </td>
-            <td>
-              <button
-
-                // onClick={() => props.addGameToCollection(game.id)}
-              >
-                Add to game list
-              </button>
-            </td>
-
-          </tr>
+          <GameListItem
+            game={game}
+            addGameToCollection={addGameToCollection}
+          />
         ))}
       </table>
     </div>
   );
 
+}
+
+const GameListItem = (props) => {
+  const {game, addGameToCollection} = props;
+
+  return (
+    <tr key={game.id}>
+      <td>
+        <div className="border">
+          <img src="" alt=""/>
+          <p>Title:{game.title}</p>
+          <p>Publisher: {game.publisher}</p>
+          <p>Genre: {game.genre}</p>
+          <p>System: {game.system}</p>
+          <p>Release Date: {game.release_date}</p>
+          <p>Value: {game.value}</p>
+          <p>Rating: {game.rating}</p>
+        </div>
+      </td>
+      <td>
+        <button
+          onClick={() => addGameToCollection(game.id)}
+        >
+          Add to game list
+        </button>
+      </td>
+
+    </tr>
+  )
 }

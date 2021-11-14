@@ -43,6 +43,10 @@ export const App = () => {
     getAllGamesOwned(userId);
   }, []);
 
+  useEffect((gameId) => {
+    getAllGameReviews(gameId);
+  }, []);
+
   const getLoggedInUserId = () => {
     const token = getAuthToken();
 
@@ -110,8 +114,35 @@ export const App = () => {
 
   const getAllGamesOwned = async (userId) => {
     console.log("get all games owned function start, user: " + userId);
-    let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/user/${userId}/`)
+    let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/users/${userId}/`)
     setGamesOwned(response.data);
+  }
+
+  const getAllGameReviews = async (gameId) => {
+    console.log("get all games owned function start, user: " + gameId);
+    const response = await axios.get(`http://127.0.0.1:8000/api/games_owned/game/${gameId}/`)
+    setGamesOwned(response.data);
+  }
+
+  const updateGameReviews = async (gamesOwnedId) => {
+    const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`)
+    setGamesOwned(response.data)
+  }
+
+  const addGameToCollection = async (gameId) => {
+    try {
+      const request = {
+        user_id: user.id,
+        game_id: gameId
+      };
+      const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/`, request);
+      console.log("adding game to your collection");
+      getAllGamesOwned(user.id);
+      // setGamesOwned(gamesOwned.push(response.data));
+
+    } catch (ex) {
+      console.log('erorr in add call', ex);
+    }
   }
 
   const deleteGame = async (gamesOwnedId) => {
@@ -143,7 +174,7 @@ export const App = () => {
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
-            <Route exact path="/games" element={<GamesListView games={games} />  }/>
+            <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
 
             {/*<Route exact path="/" element={<>index</>} />*/}
 
