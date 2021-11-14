@@ -13,7 +13,7 @@ export const GameView = () => {
   return (
     <StyledGameView>
       <div className="wrapper">
-
+          <p>Hi im the game view</p>
       </div>
     </StyledGameView>
   )

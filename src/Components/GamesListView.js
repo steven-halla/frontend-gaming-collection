@@ -1,5 +1,11 @@
 import React, {useState} from "react"
+import styled from "styled-components";
+import {TextField} from "@mui/material";
 
+const StyledGameListView = styled.div`
+  margin-left: 10px;
+  
+`
 export const GamesListView = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const {addGameToCollection} = props;
@@ -19,24 +25,30 @@ export const GamesListView = (props) => {
     });
 
   return (
-    <div>
-      <p>Hi Im a search bar</p>
-      <input
-        type="text"
-        placeholder="Search by game info"
-        onChange={(event) => {
-          setSearchQuery(event.target.value);
-        }}
-      />
-      <table>
-        {filteredGames.map((game) => (
-          <GameListItem
-            game={game}
-            addGameToCollection={addGameToCollection}
-          />
-        ))}
-      </table>
-    </div>
+    <StyledGameListView>
+      <div>
+
+        <TextField
+          type="text"
+          id="filled-hidden-label-normal"
+          defaultValue="Game Search"
+          variant="filled"
+          placeholder="Search by game info"
+          onChange={(event) => {
+            setSearchQuery(event.target.value);
+          }}
+        />
+        <table>
+          {filteredGames.map((game) => (
+            <GameListItem
+              game={game}
+              addGameToCollection={addGameToCollection}
+            />
+          ))}
+        </table>
+      </div>
+    </StyledGameListView>
+
   );
 
 }
@@ -56,6 +68,7 @@ const GameListItem = (props) => {
           <p>Release Date: {game.release_date}</p>
           <p>Value: {game.value}</p>
           <p>Rating: {game.rating}</p>
+          <a href="/games/${gameid}">Game View</a>
         </div>
       </td>
       <td>

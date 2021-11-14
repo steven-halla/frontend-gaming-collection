@@ -176,7 +176,7 @@ export const App = () => {
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
             <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
-            <Route exact path="/game" element={<GameView    />}/>
+            <Route exact path="/games/${gameid}" element={<GameView    />}/>
             {/*<Route exact path="/" element={<>index</>} />*/}
 
           </Routes>
