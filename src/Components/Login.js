@@ -82,7 +82,5 @@ export const Login = (props) => {
         </div>
       </LoginDiv>
     </div>
-
   );
-
 }

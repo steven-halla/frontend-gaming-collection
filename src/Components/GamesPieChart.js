@@ -1,11 +1,9 @@
 import React from 'react';
 import {Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
 
-
 export const GamesPieChart = (props) => {
   const {data, width = 400, height = 400} = props;
 
-  // copied from rechart example page
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value}) => {
@@ -23,7 +21,6 @@ export const GamesPieChart = (props) => {
 
   // https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
   return (
-    // <ResponsiveContainer width="100%" height="100%">
       <PieChart width={width} height={height}>
         <Pie
           dataKey="value"
@@ -39,7 +36,6 @@ export const GamesPieChart = (props) => {
         <Pie dataKey="value" data={data} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
         <Tooltip />
       </PieChart>
-    // </ResponsiveContainer>
   );
 
 }

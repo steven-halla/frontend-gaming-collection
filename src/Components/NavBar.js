@@ -9,7 +9,6 @@ const StyledNavBar = styled.div`
     width: 100%;
     height: 60px;
     background-color: #61dafb;
-    
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;

@@ -12,12 +12,10 @@ import {GamesListView} from "./Components/GamesListView";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
 
-
 export const App = () => {
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
   const [gamesOwned, setGamesOwned] = useState([]);
-
 
   useEffect(() => {
     const userId = getLoggedInUserId();
@@ -28,7 +26,6 @@ export const App = () => {
         setUser(user);
       });
     }
-
   }, []);
 
   useEffect(() => {
@@ -49,15 +46,12 @@ export const App = () => {
 
   const getLoggedInUserId = () => {
     const token = getAuthToken();
-
     if (!token) {
       console.log("token is null");
       return null;
     }
-
     const decodedJwt = jwtDecode(token);
     console.log("decodedJwt", decodedJwt);
-
     return decodedJwt.user_id;
   }
 
@@ -82,7 +76,6 @@ export const App = () => {
       console.log("login response", response);
       setAuthToken(response.data.access);
       window.location = '/';
-
     } catch (error) {
       console.log('error with logged in user', error);
       return error
@@ -101,7 +94,6 @@ export const App = () => {
       });
       console.log(registerRequest);
       window.location = '/';
-
     } catch (error) {
       console.log(error, 'error with register user');
     }
@@ -149,10 +141,6 @@ export const App = () => {
     try {
       await axios.delete(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`);
       console.log("i just did an axios call for delete")
-     // await getAllGamesOwned(user.id);
-
-      // instead of reloading all games owned via getAllGamesOwned which updates the gamesOwned state,
-      // I'm deleting the game from the gamesOwned state by id.
       setGamesOwned(
         gamesOwned.filter(game => game.id !== gamesOwnedId)
       );
@@ -162,13 +150,11 @@ export const App = () => {
     }
   }
 
-
   return (
     <div>
       <header>
         <Router>
           <NavBar user={user} setUser={setUser} />
-
           <Routes>
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
@@ -176,8 +162,6 @@ export const App = () => {
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
             <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
             <Route exact path="/games/${gameid}" element={<GameView    />}/>
-            {/*<Route exact path="/" element={<>index</>} />*/}
-
           </Routes>
         </Router>
       </header>

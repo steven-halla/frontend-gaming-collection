@@ -5,7 +5,7 @@ const StyledFooter = styled.div `
   .wrapper {
     background-color: #61dafb;
     display: flex;
-    height: 15vh;
+    height: 25vh;
     width: 100%;
     
     .social-media-container {
@@ -27,7 +27,6 @@ const StyledFooter = styled.div `
     }
     .contact-me-info-container {
       height: 10vh;
-      //width: 20vh;
       display: flex;
       margin-left: 80vh;
       display: flex;

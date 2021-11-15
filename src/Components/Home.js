@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import {Footer} from "./Footer";
 
-
 const StyledHome = styled.div`
   .wrapper {
     height: 100vh;
@@ -52,8 +51,6 @@ const StyledHome = styled.div`
         width: 20vh;
         margin-left: auto;
       }
-
-  
       
       .image-box-message-container {
         padding-left: 12px;
@@ -65,24 +62,15 @@ const StyledHome = styled.div`
       }
 
       .image-box-message-container-2 {
-        
         height: 20vh;
         width: 30vh;
       }
-      
-      
     }
     
     .third-container {
       height: 45vh;
     }
-    
-    //.footer {
-    //  height: 20vh;
-    //}
-    //
   }
-  
 `
 
 export const Home = (props) => {
@@ -119,10 +107,8 @@ export const Home = (props) => {
             200 dollar game is worth buying.</p>
           </div>
         </div>
-
         <div className="footer">
            <Footer />
-
         </div>
       </div>
     </StyledHome>
