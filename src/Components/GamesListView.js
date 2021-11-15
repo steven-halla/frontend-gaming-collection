@@ -80,7 +80,7 @@ const GameListItem = (props) => {
     <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
       <Paper elevation={4}>
         <div className="game-content">
-          <img src="" alt=""/>
+          <img src={game.image} alt=""/>
           <p>Title:{game.title}</p>
           <p>Publisher: {game.publisher}</p>
           <p>Genre: {game.genre}</p>
