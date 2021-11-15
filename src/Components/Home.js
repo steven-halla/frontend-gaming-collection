@@ -164,7 +164,6 @@ export const Home = (props) => {
           <p>Busiess  hours: 9-5 Monday-Friday Pacific Time</p>
         </div>
       </div>
-      {/*<Footer />*/}
     </StyledHome>
   )
 }

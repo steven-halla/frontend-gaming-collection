@@ -71,7 +71,6 @@ export const GamesListView = (props) => {
       </div>
     </StyledGameListView>
   );
-
 }
 
 const GameListItem = (props) => {

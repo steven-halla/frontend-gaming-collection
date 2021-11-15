@@ -5,7 +5,7 @@ import {Button, Grid, Paper} from "@mui/material";
 import {useParams} from "react-router";
 
 const StyledGameView = styled.div `
-  &.game { // reminder:   & means "this" in css.
+  &.game { 
     margin: 15px;
     
     .game-content {
@@ -18,12 +18,9 @@ const StyledGameView = styled.div `
 
 export const GameView = (props) => {
   const {addGameToCollection} = props;
-
   const [game, setGame] = useState(null);
+  const { id: gameId } = useParams();
 
-  const { id: gameId } = useParams(); // read "id" parameter from url path + rename to gameId for clarity
-
-  // load game (and set state) on page load
   useEffect(() => {
     getGame(gameId);
 

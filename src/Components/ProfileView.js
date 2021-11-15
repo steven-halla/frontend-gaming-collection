@@ -131,7 +131,6 @@ export const ProfileView = (props) => {
       <table>
       <Grid container spacing={2}>
           {gamesOwned.map((ownedGame) => {
-            // rename "id" as "ownedGameId" when destructuring from "ownedGame"
             const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
 
             return (
@@ -148,21 +147,6 @@ export const ProfileView = (props) => {
                       <Button variant="outlined"
                       onClick={() => props.deleteGame(gamesOwnedId)}>Delete</Button>
                     </div>
-                    {/*this will be put back in later*/}
-                    {/*<form action="" onSubmit={handleSubmit}>*/}
-                    {/*  <p>Leave or update a review:</p>*/}
-                    {/*  <label htmlFor="review">Review</label>*/}
-                    {/*  <input type="text" value={ownedGame.review} />*/}
-                    {/*  <label htmlFor="">Rating:</label>*/}
-                    {/*  <select name="starRating" id="starRating" value={ownedGame.owner_rating}  onChange={handleChange} >*/}
-                    {/*    <option value="1">1</option>*/}
-                    {/*    <option value="2">2</option>*/}
-                    {/*    <option value="3">3</option>*/}
-                    {/*    <option value="4">4</option>*/}
-                    {/*    <option value="5">5</option>*/}
-                    {/*  </select>*/}
-                    {/*  <Button type="submit">submit changes</Button>*/}
-                    {/*</form>*/}
                   </td>
                 </tr>
                 </Paper>

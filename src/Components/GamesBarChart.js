@@ -4,7 +4,6 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 export const GamesBarChart = (props) => {
   const {data} = props;
     return (
-      // <ResponsiveContainer width="100%" height="100%">
         <BarChart width={640} height={480} data={data}>
           <XAxis dataKey="name" />
           <YAxis />

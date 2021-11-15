@@ -117,14 +117,12 @@ export const App = () => {
   }
 
   const updateGameReviews = async (gamesOwnedId, review, rating) => {
-    // 1. build a request object with owner_review + rating
-    // 2. pass request into axios.patch(url, request)
+
     const request = {
       owner_review: review,
       rating: rating
     };
     const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`, request)
-    //setGamesOwned(response.data); // we are updating a SINGLE game,
   }
 
   const addGameToCollection = async (gameId) => {
@@ -136,7 +134,6 @@ export const App = () => {
       const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/`, request);
       console.log("adding game to your collection");
       getAllGamesOwned(user.id);
-      // setGamesOwned(gamesOwned.push(response.data));
 
     } catch (ex) {
       console.log('erorr in add call', ex);
