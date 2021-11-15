@@ -40,7 +40,8 @@ export const GameView = (props) => {
     <StyledGameView className="game">
         <Paper elevation={4}>
           <div className="game-content">
-            <img src="" alt=""/>
+            <img src={game.image} alt=""/>
+
             <p>Title: {game.title}</p>
             <p>Publisher: {game.publisher}</p>
             <p>Genre: {game.genre}</p>
