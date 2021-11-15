@@ -1,23 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {useNavigate} from "react-router";
 import styled from "styled-components";
-import {Bar, BarChart, Tooltip, XAxis, YAxis} from "recharts";
 
 const StyledFooter = styled.div `
   .wrapper {
-    background-color: green;
+    background-color: #61dafb;
     display: flex;
-    height: 28vh;
+    height: 15vh;
     width: 100%;
     
     .social-media-container {
-      background-color: chocolate;
-      height: 27vh;
+      height: 10vh;
       width: 5.5vh;
       display: flex;
       flex-direction: column;
-      
       
       img {
         margin: 5px;
@@ -30,18 +25,15 @@ const StyledFooter = styled.div `
         }
       }
     }
-    
     .contact-me-info-container {
-      background-color: violet;
-      height: 22vh;
+      height: 10vh;
       //width: 20vh;
-      //margin: auto;
-      //margin-left: 350px;
-    
-      
+      display: flex;
+      margin-left: 80vh;
+      display: flex;
+      flex-direction: column;
     }
   }
-
 `
 
 export const Footer = (props) => {
@@ -75,13 +67,4 @@ export const Footer = (props) => {
     </StyledFooter>
   );
 }
-// <div className="contact-container">
 
-// </div>
-//
-// <div className="social-media-container">
-//         <p>Twitter</p>
-//         <p>Facebook</p>
-//         <p>LinkedIn</p>
-//         <p>Patreon</p>
-//       </div>

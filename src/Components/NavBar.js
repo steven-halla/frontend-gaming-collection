@@ -36,6 +36,7 @@ const StyledNavBar = styled.div`
     .app-title {
       font-family: sans-serif;
       font-size: x-large;
+      margin: auto;
     }
   }
 `;

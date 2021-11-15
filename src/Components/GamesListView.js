@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
-import {Link} from "react-router-dom";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -24,14 +23,11 @@ const StyledGameListView = styled.div`
       }
     }
   }
-
 `
+
 export const GamesListView = (props) => {
   const {games, addGameToCollection} = props;
-
   const [searchQuery, setSearchQuery] = useState("");
-
-  console.log(games);
 
   const filteredGames = games.filter((game) => {
     if (!searchQuery) {
