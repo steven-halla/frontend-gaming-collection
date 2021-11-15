@@ -9,7 +9,6 @@ import {Home} from "./Components/Home";
 import {NavBar} from "./Components/NavBar";
 import {getAuthToken, setAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
-import {SearchBar} from "./Components/SearchBar";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
 
