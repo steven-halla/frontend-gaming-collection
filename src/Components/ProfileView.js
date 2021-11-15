@@ -35,6 +35,8 @@ const StyledProfileView = styled.div`
      font-size: larger;
      font-weight: bold;
      font-family: Blippo, fantasy;
+     letter-spacing: 1px;
+
    };
  }
 `
@@ -138,7 +140,6 @@ export const ProfileView = (props) => {
                 <tr>
                   <td>
                     <div className="returned-games">
-                      <p>Id: {game.id}</p>
                       <p>Title: {game.title}</p>
                       <p>Rating: {owner_rating}</p>
                       <p>Review: {review}</p>

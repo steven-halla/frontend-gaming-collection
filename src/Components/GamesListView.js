@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -19,6 +20,7 @@ const StyledGameListView = styled.div`
       .games-list-item {
         .game-content {
           padding: 15px;
+          letter-spacing: 1px;
         }
       }
     }
@@ -67,9 +69,7 @@ export const GamesListView = (props) => {
         </Grid>
 
       </div>
-
     </StyledGameListView>
-
   );
 
 }
@@ -89,11 +89,11 @@ const GameListItem = (props) => {
           <p>Release Date: {game.release_date}</p>
           <p>Value: {game.value}</p>
           <p>Rating: {game.rating}</p>
-          {/*<Link to={`/games/${game.id}`}>View game</Link><br/>*/}
+          <Link to={`/games/${game.id}`}>View game</Link><br/><br/>
           <Button variant="outlined"
             onClick={() => addGameToCollection(game.id)}
           >
-            Add to game list
+            Add to game collection
           </Button>
         </div>
       </Paper>

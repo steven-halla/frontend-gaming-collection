@@ -116,9 +116,15 @@ export const App = () => {
     setGamesOwned(response.data);
   }
 
-  const updateGameReviews = async (gamesOwnedId) => {
-    const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`)
-    setGamesOwned(response.data)
+  const updateGameReviews = async (gamesOwnedId, review, rating) => {
+    // 1. build a request object with owner_review + rating
+    // 2. pass request into axios.patch(url, request)
+    const request = {
+      owner_review: review,
+      rating: rating
+    };
+    const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`, request)
+    //setGamesOwned(response.data); // we are updating a SINGLE game,
   }
 
   const addGameToCollection = async (gameId) => {
@@ -161,7 +167,7 @@ export const App = () => {
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
             <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
-            <Route exact path="/games/${gameid}" element={<GameView    />}/>
+            <Route exact path="/games/:id" element={<GameView />}/>
           </Routes>
         </Router>
       </header>
