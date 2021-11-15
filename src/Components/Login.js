@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {Button} from "@mui/material";
 
 const LoginDiv = styled.div`
 
@@ -75,7 +76,7 @@ export const Login = (props) => {
                      onChange={handleChange}
                      type="password"
               />
-              <button type="submit">submit</button>
+              <Button variant="outlined"  type="submit">submit</Button>
             </form>
           </div>
         </div>

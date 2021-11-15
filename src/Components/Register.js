@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import styled from "styled-components";
+import {Button} from "@mui/material";
 
 const RegisterDiv = styled.div`
 
@@ -70,7 +71,7 @@ export const Register = (props) => {
               <input className = "Input" name="username" value={registerRequest.username} onChange={handleChange} type="text"/>
               <br/>
               <label htmlFor="">Password</label>
-              <input className = "Input"  name="password" value={registerRequest.password} onChange={handleChange} type="text"/>
+              <input className = "Input"  type="password"  name="password" value={registerRequest.password} onChange={handleChange} />
               <br/>
               <label htmlFor="">Email</label>
               <input className = "Input" name="email" value={registerRequest.email} onChange={handleChange} type="text"/>
@@ -86,7 +87,7 @@ export const Register = (props) => {
               <br/>
               <label htmlFor="">Favorite Game</label>
               <input className = "Input" name="favorite_game" value={registerRequest.favorite_game} onChange={handleChange} type="text"/>
-              <button type="submit">Create Account</button>
+              <Button variant="outlined" type="submit">Create Account</Button>
             </form>
           </div>
         </div>
