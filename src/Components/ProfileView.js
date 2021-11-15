@@ -3,6 +3,9 @@ import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import _ from "lodash";
 import styled from "styled-components";
+import {Button, Grid, Paper} from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+
 
 const StyledProfileView = styled.div`
   
@@ -11,7 +14,6 @@ const StyledProfileView = styled.div`
   margin-left: 25px;
   
   .profile-info {
-    background-color: red;
     margin: 0 auto;
     
     p {
@@ -23,12 +25,25 @@ const StyledProfileView = styled.div`
   
   
   .chart-container {
-    background-color: red;
     margin: 0 auto;
+    
+    .game-value-by-genre {
+      display: flex;
+      justify-content: center;
+  }
   }
   
-
+ .returned-games {
+   p {
+     display: flex;
+     font-size: larger;
+     font-weight: bold;
+     font-family: Blippo, fantasy;
   
+   };
+
+ }
+ 
 `
 
 export const ProfileView = (props) => {
@@ -141,12 +156,20 @@ export const ProfileView = (props) => {
 
 
       <table>
-        {gamesOwned.map((ownedGame) => {
+
+      <Grid container spacing={2}>
+
+
+          {gamesOwned.map((ownedGame) => {
             // rename "id" as "ownedGameId" when destructuring from "ownedGame"
             const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
+
+
+
             return (
 
-
+              <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
+                <Paper elevation={4}>
                 <tr>
                   <td>
                     {/*<p>Id: {gamesOwnedId}</p>*/}
@@ -158,28 +181,34 @@ export const ProfileView = (props) => {
                       <p>Review: {review}</p>
                       <p>Genre: {game.genre}</p>
                       <p>Value: {game.value}</p>
-                      <button onClick={() => props.deleteGame(gamesOwnedId)}>Delete</button>
+                      <Button variant="outlined"
+
+                      onClick={() => props.deleteGame(gamesOwnedId)}>Delete</Button>
                     </div>
 
-                    <form action="" onSubmit={handleSubmit}>
-                      <p>Leave or update a review:</p>
-                      <label htmlFor="review">Review</label>
-                      <input type="text" value={ownedGame.review} />
-                      <label htmlFor="">Rating:</label>
-                      <select name="starRating" id="starRating" value={ownedGame.owner_rating}  onChange={handleChange} >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                      <button type="submit">submit changes</button>
-                    </form>
+                    {/*<form action="" onSubmit={handleSubmit}>*/}
+                    {/*  <p>Leave or update a review:</p>*/}
+                    {/*  <label htmlFor="review">Review</label>*/}
+                    {/*  <input type="text" value={ownedGame.review} />*/}
+                    {/*  <label htmlFor="">Rating:</label>*/}
+                    {/*  <select name="starRating" id="starRating" value={ownedGame.owner_rating}  onChange={handleChange} >*/}
+                    {/*    <option value="1">1</option>*/}
+                    {/*    <option value="2">2</option>*/}
+                    {/*    <option value="3">3</option>*/}
+                    {/*    <option value="4">4</option>*/}
+                    {/*    <option value="5">5</option>*/}
+                    {/*  </select>*/}
+                    {/*  <Button type="submit">submit changes</Button>*/}
+                    {/*</form>*/}
                   </td>
                 </tr>
+                </Paper>
+              </Grid>
                 );
                 }
-                )}
+
+         )}
+      </Grid>
               </table>
 
 
