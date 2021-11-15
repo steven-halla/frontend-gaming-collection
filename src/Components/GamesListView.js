@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import styled from "styled-components";
-import {Grid, Paper, TextField} from "@mui/material";
+import {Button, Grid, Paper, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
 
 const StyledGameListView = styled.div`
@@ -93,12 +93,12 @@ const GameListItem = (props) => {
           <p>Release Date: {game.release_date}</p>
           <p>Value: {game.value}</p>
           <p>Rating: {game.rating}</p>
-          <Link to={`/games/${game.id}`}>View game</Link><br/>
-          <button
+          {/*<Link to={`/games/${game.id}`}>View game</Link><br/>*/}
+          <Button variant="outlined"
             onClick={() => addGameToCollection(game.id)}
           >
             Add to game list
-          </button>
+          </Button>
         </div>
       </Paper>
     </Grid>
