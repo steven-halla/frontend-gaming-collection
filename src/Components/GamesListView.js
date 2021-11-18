@@ -18,9 +18,17 @@ const StyledGameListView = styled.div`
       flex-flow: row wrap;
 
       .games-list-item {
+        
+        .paper {
+          height: 900px;
+        }
+      
         .game-content {
           padding: 15px;
           letter-spacing: 1px;
+          
+          //object-fit: and object cover;create div for image container 
+        
         }
       }
     }
@@ -29,6 +37,7 @@ const StyledGameListView = styled.div`
 
 export const GamesListView = (props) => {
   const {games, addGameToCollection} = props;
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredGames = games.filter((game) => {
@@ -78,7 +87,7 @@ const GameListItem = (props) => {
 
   return (
     <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
-      <Paper elevation={4}>
+      <Paper className="paper" elevation={4}>
         <div className="game-content">
           <img src={game.image} alt=""/>
           <p>Title:{game.title}</p>
