@@ -121,9 +121,9 @@ export const Home = (props) => {
 
           <div className="row">
             <div className="image-box-message-container">
-              <p>Curious as to if a game is any good or not? With game booky you can leave reviews
-                for games that are in your collection as well as check out other user reviews. Now you'll know if that
-                200 dollar game is worth buying.</p>
+              <p>Game Booky is fast and easy to use. Our database has thousands of games across various systems. Simple search for the game
+              you want and click the "add"button and your done. No longer will you have to use
+              word documents to keep track of your games. </p>
             </div>
             <div className="image-container">
               <img
