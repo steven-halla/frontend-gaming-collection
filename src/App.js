@@ -163,7 +163,12 @@ export const App = () => {
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
-            <Route exact path="/games" element={<GamesListView games={games} gamesOwned={gamesOwned} getAllGameReviews={getAllGameReviews} addGameToCollection={addGameToCollection} />  }/>
+            <Route exact path="/games" element={<GamesListView
+              games={games}
+              gamesOwned={gamesOwned}
+              getAllGameReviews={getAllGameReviews}
+              addGameToCollection={addGameToCollection}
+            />}/>
             <Route exact path="/games/:id" element={<GameView />}/>
           </Routes>
         </Router>

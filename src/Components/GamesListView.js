@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
+import clsx from "clsx";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -18,22 +19,34 @@ const StyledGameListView = styled.div`
       flex-flow: row wrap;
 
       .games-list-item {
-        
+      
         .paper {
-          height: 900px;
+          height: 850px;
+          background-color: #fff;
           
+          :hover {
+            background-color: #eee;
+            //border: 2px solid black;
+            box-shadow: 5px 5px gray;
+          }
         }
-      .paper:hover {
-        background-color: green;
-        border: 2px solid black;
-        box-shadow: 5px 5px gray
-      }
+
         .game-content {
           padding: 15px;
           letter-spacing: 1px;
-          
+
           //object-fit: and object cover;create div for image container 
+
+        }
         
+        // overrides for if owned. this css selector will match any element that has BOTH the games-list-item class AND the owned class (e.g. className="games-list-item owned")
+        &.owned {
+          .paper {
+            background-color: #cec;
+            
+            :hover {
+              background-color: #9e9;
+            }
         }
       }
     }
@@ -41,7 +54,7 @@ const StyledGameListView = styled.div`
 `
 
 export const GamesListView = (props) => {
-  const {games, addGameToCollection} = props;
+  const {games, addGameToCollection, gamesOwned} = props;
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -78,6 +91,7 @@ export const GamesListView = (props) => {
             <GameListItem
               game={game}
               addGameToCollection={addGameToCollection}
+              gamesOwned={gamesOwned}
             />
           )}
         </Grid>
@@ -88,10 +102,17 @@ export const GamesListView = (props) => {
 }
 
 const GameListItem = (props) => {
-  const {game, addGameToCollection} = props;
+  const {game, addGameToCollection, gamesOwned} = props;
+
+  // 1. filter will return true if the game we are rendering's id (game.id) matches a game id from any of my owned games.
+  // 2. gamesOwned.filter(...) will return an array of GamesOwned objects that match id. Only one game could match, so we determine if the game is owned by whether or not the filter returns at least one match
+  const isGameOwned = gamesOwned.filter((gameOwned) => {
+    return gameOwned.game.id === game.id
+  }).length > 0;
 
   return (
-    <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
+    <Grid key={game.id} item className={clsx("games-list-item", isGameOwned ? "owned" : null)} xs={12} md={6} lg={4}
+          xl={3}>
       <Paper className="paper" elevation={4}>
         <div className="game-content">
           <img src={game.image} alt=""/>
@@ -103,10 +124,11 @@ const GameListItem = (props) => {
           <p>Value: {game.value}</p>
           <Link to={`/games/${game.id}`}>View game</Link><br/><br/>
           <Button variant="outlined"
-            onClick={() => addGameToCollection(game.id)}
+                  onClick={() => addGameToCollection(game.id)}
           >
             Add to game collection
           </Button>
+
         </div>
       </Paper>
     </Grid>

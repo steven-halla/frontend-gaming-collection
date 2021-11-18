@@ -1,0 +1,66 @@
+[
+  {
+    "id": 22,
+    "game": {
+      "id": 3,
+      "title": "River City Girls",
+      "publisher": "WayForward, Arc System WOrks",
+      "genre": "Beat em'up",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0e/River_city_girls_title_card.PNG",
+      "system": "ps4",
+      "release_date": 2019,
+      "value": 100,
+      "rating": 5
+    },
+    "owner_rating": 5,
+    "review": "a review"
+  },
+  {
+    "id": 24,
+    "game": {
+      "id": 5,
+      "title": "Blood Stained",
+      "publisher": "WayForward",
+      "genre": "MetroidVania",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Bloodstained_cover_art.jpg",
+      "system": "ps4",
+      "release_date": 2019,
+      "value": 50,
+      "rating": 5
+    },
+    "owner_rating": 5,
+    "review": "love it"
+  },
+  {
+    "id": 38,
+    "game": {
+      "id": 9,
+      "title": "Golden Axe",
+      "publisher": "sega",
+      "genre": "Beat em'up",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3a/Golden_Axe_logo.png",
+      "system": "genesis",
+      "release_date": 1989,
+      "value": 44,
+      "rating": 2
+    },
+    "owner_rating": 0,
+    "review": "N/A"
+  },
+  {
+    "id": 40,
+    "game": {
+      "id": 13,
+      "title": "EarthBound",
+      "publisher": "Hal Laboratory ",
+      "genre": "RPG",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/EarthBound_Box.jpg",
+      "system": "snes",
+      "release_date": 1994,
+      "value": 200,
+      "rating": 4
+    },
+    "owner_rating": 0,
+    "review": "N/A"
+  }
+]
