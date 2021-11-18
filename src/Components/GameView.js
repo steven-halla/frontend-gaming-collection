@@ -48,7 +48,6 @@ export const GameView = (props) => {
             <p>System: {game.system}</p>
             <p>Release Date: {game.release_date}</p>
             <p>Value: {game.value}</p>
-            <p>Rating: {game.rating}</p>
           </div>
         </Paper>
     </StyledGameView>

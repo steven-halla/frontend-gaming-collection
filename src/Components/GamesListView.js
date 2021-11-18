@@ -21,8 +21,13 @@ const StyledGameListView = styled.div`
         
         .paper {
           height: 900px;
+          
         }
-      
+      .paper:hover {
+        background-color: green;
+        border: 2px solid black;
+        box-shadow: 5px 5px gray
+      }
         .game-content {
           padding: 15px;
           letter-spacing: 1px;
@@ -96,7 +101,6 @@ const GameListItem = (props) => {
           <p>System: {game.system}</p>
           <p>Release Date: {game.release_date}</p>
           <p>Value: {game.value}</p>
-          <p>Rating: {game.rating}</p>
           <Link to={`/games/${game.id}`}>View game</Link><br/><br/>
           <Button variant="outlined"
             onClick={() => addGameToCollection(game.id)}
