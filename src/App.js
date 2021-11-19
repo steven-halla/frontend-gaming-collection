@@ -40,9 +40,9 @@ export const App = () => {
     getAllGamesOwned(userId);
   }, []);
 
-  useEffect((gameId) => {
-    getAllGameReviews(gameId);
-  }, []);
+  // useEffect((gameId) => {
+  //   getAllGameReviews(gameId);
+  // }, []);
 
   const getLoggedInUserId = () => {
     const token = getAuthToken();
@@ -109,29 +109,25 @@ export const App = () => {
     let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/users/${userId}/`)
     setGamesOwned(response.data);
   }
+  //
+  // const getAllGameReviews = async (gameId) => {
+  //   console.log("get all games owned function start, user: " + gameId);
+  //   const response = await axios.get(`http://127.0.0.1:8000/api/games_owned/games/${gameId}/`)
+  //   setGamesOwned(response.data);
+  // }
 
-  const getAllGameReviews = async (gameId) => {
-    console.log("get all games owned function start, user: " + gameId);
-    const response = await axios.get(`http://127.0.0.1:8000/api/games_owned/game/${gameId}/`)
-    setGamesOwned(response.data);
-  }
-
-  const updateGameReviews = async (gamesOwnedId, review, rating) => {
-
-    const request = {
-      owner_review: review,
-      rating: rating
-    };
-    const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`, request)
-  }
+  // const updateGameReviews = async (gamesOwnedId, review, rating) => {
+  //
+  //   const request = {
+  //     owner_review: review,
+  //     rating: rating
+  //   };
+  //   const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`, request)
+  // }
 
   const addGameToCollection = async (gameId) => {
     try {
-      const request = {
-        user_id: user.id,
-        game_id: gameId
-      };
-      const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/`, request);
+      const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
       console.log("adding game to your collection");
       getAllGamesOwned(user.id);
 
@@ -140,12 +136,12 @@ export const App = () => {
     }
   }
 
-  const deleteGame = async (gamesOwnedId) => {
+  const deleteGameFromCollection = async (gameId) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`);
+      await axios.delete(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
       console.log("i just did an axios call for delete")
       setGamesOwned(
-        gamesOwned.filter(game => game.id !== gamesOwnedId)
+        gamesOwned.filter(gameOwned => gameOwned.game.id !== gameId)
       );
 
     } catch (ex) {
@@ -162,12 +158,12 @@ export const App = () => {
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
             <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
             <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
-            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGame={deleteGame} /> }/>
+            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGameFromCollection={deleteGameFromCollection} /> }/>
             <Route exact path="/games" element={<GamesListView
               games={games}
               gamesOwned={gamesOwned}
-              getAllGameReviews={getAllGameReviews}
               addGameToCollection={addGameToCollection}
+              deleteGameFromCollection={deleteGameFromCollection}
             />}/>
             <Route exact path="/games/:id" element={<GameView />}/>
           </Routes>

@@ -19,11 +19,15 @@ const StyledGameListView = styled.div`
       flex-flow: row wrap;
 
       .games-list-item {
-      
+
+        :hover {
+          cursor: pointer;
+        }
+
         .paper {
           height: 850px;
           background-color: #fff;
-          
+
           :hover {
             background-color: #eee;
             //border: 2px solid black;
@@ -37,16 +41,29 @@ const StyledGameListView = styled.div`
 
           //object-fit: and object cover;create div for image container 
 
+          .image-container {
+            //max-height: 50px;
+            //  max-width: 30px;
+            overflow: hidden;
+
+            img {
+
+              //overflow: hidden;
+
+            }
+          }
         }
-        
+
+
         // overrides for if owned. this css selector will match any element that has BOTH the games-list-item class AND the owned class (e.g. className="games-list-item owned")
         &.owned {
           .paper {
             background-color: #cec;
-            
+
             :hover {
               background-color: #9e9;
             }
+          }
         }
       }
     }
@@ -54,7 +71,7 @@ const StyledGameListView = styled.div`
 `
 
 export const GamesListView = (props) => {
-  const {games, addGameToCollection, gamesOwned} = props;
+  const {games, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -90,8 +107,9 @@ export const GamesListView = (props) => {
           {filteredGames.map((game) =>
             <GameListItem
               game={game}
-              addGameToCollection={addGameToCollection}
               gamesOwned={gamesOwned}
+              addGameToCollection={addGameToCollection}
+              deleteGameFromCollection={deleteGameFromCollection}
             />
           )}
         </Grid>
@@ -102,20 +120,31 @@ export const GamesListView = (props) => {
 }
 
 const GameListItem = (props) => {
-  const {game, addGameToCollection, gamesOwned} = props;
+  const {game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   // 1. filter will return true if the game we are rendering's id (game.id) matches a game id from any of my owned games.
   // 2. gamesOwned.filter(...) will return an array of GamesOwned objects that match id. Only one game could match, so we determine if the game is owned by whether or not the filter returns at least one match
-  const isGameOwned = gamesOwned.filter((gameOwned) => {
+  const filteredGamesOwned = gamesOwned.filter((gameOwned) => {
     return gameOwned.game.id === game.id
-  }).length > 0;
+  });
+  const isGameOwned = filteredGamesOwned.length > 0;
+
+  const onAddGameToCollection = () => {
+    addGameToCollection(game.id);
+  }
+
+  const onDeleteGameFromCollection = () => {
+    deleteGameFromCollection(game.id);
+  }
 
   return (
     <Grid key={game.id} item className={clsx("games-list-item", isGameOwned ? "owned" : null)} xs={12} md={6} lg={4}
           xl={3}>
       <Paper className="paper" elevation={4}>
         <div className="game-content">
-          <img src={game.image} alt=""/>
+          <div className="image-container">
+            <img src={game.image} alt=""/>
+          </div>
           <p>Title:{game.title}</p>
           <p>Publisher: {game.publisher}</p>
           <p>Genre: {game.genre}</p>
@@ -123,11 +152,16 @@ const GameListItem = (props) => {
           <p>Release Date: {game.release_date}</p>
           <p>Value: {game.value}</p>
           <Link to={`/games/${game.id}`}>View game</Link><br/><br/>
-          <Button variant="outlined"
-                  onClick={() => addGameToCollection(game.id)}
-          >
-            Add to game collection
-          </Button>
+
+          {!isGameOwned ? (
+            <Button variant="outlined" onClick={onAddGameToCollection}>
+              Add
+            </Button>
+          ) : (
+            <Button variant="outlined" onClick={onDeleteGameFromCollection}>
+              Remove
+            </Button>
+          )}
 
         </div>
       </Paper>

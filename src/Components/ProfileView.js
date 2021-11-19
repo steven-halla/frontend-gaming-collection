@@ -42,7 +42,7 @@ const StyledProfileView = styled.div`
 `
 
 export const ProfileView = (props) => {
-  const {user, gamesOwned} = props;
+  const {user, gamesOwned, deleteGameFromCollection} = props;
   console.log(gamesOwned);
 
   const totalGameValue = gamesOwned
@@ -145,7 +145,7 @@ export const ProfileView = (props) => {
                       <p>Genre: {game.genre}</p>
                       <p>Value: {game.value}</p>
                       <Button variant="outlined"
-                      onClick={() => props.deleteGame(gamesOwnedId)}>Delete</Button>
+                      onClick={() => deleteGameFromCollection(gamesOwnedId)}>Delete</Button>
                     </div>
                   </td>
                 </tr>
