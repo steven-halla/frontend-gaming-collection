@@ -106,6 +106,8 @@ export const ProfileView = (props) => {
 
   }
 
+
+
   return (
     <StyledProfileView>
 
@@ -144,8 +146,8 @@ export const ProfileView = (props) => {
                       <p>Review: {review}</p>
                       <p>Genre: {game.genre}</p>
                       <p>Value: {game.value}</p>
-                      <Button variant="outlined"
-                      onClick={() => deleteGameFromCollection(gamesOwnedId)}>Delete</Button>
+                      {/*<Button variant="outlined"*/}
+                      {/*onClick={() => deleteGameFromCollection(gamesOwnedId)}>Delete</Button>*/}
                     </div>
                   </td>
                 </tr>

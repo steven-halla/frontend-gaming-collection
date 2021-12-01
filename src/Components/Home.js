@@ -52,11 +52,13 @@ const StyledHome = styled.div`
       display: flex;
       flex-flow: row nowrap;
       //position: fixed;
-      padding: 16px;
+      padding: 56px;
       //bottom: 0;
-      width: 100%;
-      margin-top: auto;
+      width: 94%;
+      //height: 150px;
+      bottom: 0;
       overflow: auto;
+      padding-bottom: 5.8rem;
 
       .social-media-container {
         display: flex;
