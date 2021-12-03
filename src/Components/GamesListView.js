@@ -122,8 +122,6 @@ export const GamesListView = (props) => {
 const GameListItem = (props) => {
   const {game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
-  // 1. filter will return true if the game we are rendering's id (game.id) matches a game id from any of my owned games.
-  // 2. gamesOwned.filter(...) will return an array of GamesOwned objects that match id. Only one game could match, so we determine if the game is owned by whether or not the filter returns at least one match
   const filteredGamesOwned = gamesOwned.filter((gameOwned) => {
     return gameOwned.game.id === game.id
   });

@@ -24,7 +24,7 @@ const StyledHome = styled.div`
 
     .main-image-box {
       display: flex;
-      flex-flow: column nowrap; // shorthand for below
+      flex-flow: column nowrap; 
       width: 100%;
 
       .row {
