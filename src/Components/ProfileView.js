@@ -45,6 +45,8 @@ export const ProfileView = (props) => {
   const {user, gamesOwned, deleteGameFromCollection} = props;
   console.log(gamesOwned);
 
+
+
   const totalGameValue = gamesOwned
     .map(ownedGame => ownedGame.game.value)
     .reduce((a, b) => a + b, 0);
@@ -88,29 +90,20 @@ export const ProfileView = (props) => {
       }
     });
 
-  const [review, setReview] = useState({
-    body : " ",
-    starRating : " "
-
-  });
-
-  const handleChange = (event) => {
-    setReview(previousState => ({
-      ...previousState,
-      [event.target.name] : event.target.value
-    }) );
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
   }
 
+  const onDeleteGameFromCollection = () => {
+    deleteGameFromCollection();
+  }
+
 
 
   return (
     <StyledProfileView>
-
       <div className="profile-info">
         <p>Welcome {user?.username}</p>
         <p>My favorite game: {user?.favorite_game}</p>
@@ -131,6 +124,7 @@ export const ProfileView = (props) => {
       </div>
     </div>
       <table>
+
       <Grid container spacing={2}>
           {gamesOwned.map((ownedGame) => {
             const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
@@ -146,8 +140,8 @@ export const ProfileView = (props) => {
                       <p>Review: {review}</p>
                       <p>Genre: {game.genre}</p>
                       <p>Value: {game.value}</p>
-                      {/*<Button variant="outlined"*/}
-                      {/*onClick={() => deleteGameFromCollection(gamesOwnedId)}>Delete</Button>*/}
+                      <Button variant="outlined"
+                      onClick={ onDeleteGameFromCollection}>Delete</Button>
                     </div>
                   </td>
                 </tr>
