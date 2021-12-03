@@ -82,7 +82,6 @@ const StyledHome = styled.div`
         flex-direction: column;
       }
     }
-
   }
 `
 

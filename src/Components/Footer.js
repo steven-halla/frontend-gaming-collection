@@ -69,3 +69,90 @@
 //   );
 // }
 
+
+
+
+
+// ////////
+// .wrapper {
+//   display: flex;
+//   flex-flow: column nowrap;
+//   height: 100%;
+//
+// .main-text {
+//     display: flex;
+//     align-content: center;
+//     justify-content: center;
+//     height: 150px;
+//     flex-shrink: 0;
+//
+//   .main-text-content {
+//       font-family: Copperplate;
+//       letter-spacing: 2px;
+//       font-size: large;
+//       width: 60vw;
+//     }
+//   }
+//
+// .main-image-box {
+//     display: flex;
+//     flex-flow: column nowrap;
+//     width: 100%;
+//
+//   .row {
+//       display: flex;
+//       flex-flow: row nowrap;
+//
+//     .image-container {
+//         padding: 16px;
+//
+//         img {
+//         }
+//       }
+//
+//     .image-box-message-container {
+//         padding-left: 12px;
+//         font-family: "Times New Roman";
+//         letter-spacing: 2px;
+//         font-size: x-large;
+//       }
+//     }
+//   }
+//
+// .footer {
+//     background-color: #61dafb;
+//     display: flex;
+//     flex-flow: row nowrap;
+//     //position: fixed;
+//     padding: 56px;
+//     //bottom: 0;
+//     width: 94%;
+//     //height: 150px;
+//     bottom: 0;
+//     overflow: auto;
+//     padding-bottom: 5.8rem;
+//
+//   .social-media-container {
+//       display: flex;
+//       flex-direction: column;
+//       width: 50%;
+//
+//       img {
+//         margin: 5px;
+//         height: 32px;
+//         width: 32px;
+//
+//         a {
+//           height: 32px;
+//           width: 32px;
+//         }
+//       }
+//     }
+//
+//   .contact-me-info-container {
+//       display: flex;
+//       flex-direction: column;
+//     }
+//   }
+//
+// }
