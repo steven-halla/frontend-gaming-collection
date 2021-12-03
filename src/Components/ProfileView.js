@@ -129,6 +129,10 @@ export const ProfileView = (props) => {
           {gamesOwned.map((ownedGame) => {
             const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
 
+            const onDeleteGameFromCollection = () => {
+              deleteGameFromCollection(game.id);
+            }
+
             return (
               <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
                 <Paper elevation={4}>

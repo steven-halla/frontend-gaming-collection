@@ -143,7 +143,6 @@ export const App = () => {
       setGamesOwned(
         gamesOwned.filter(gameOwned => gameOwned.game.id !== gameId)
       );
-
     } catch (ex) {
       console.log('Error in Delete Call', ex);
     }
