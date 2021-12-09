@@ -11,7 +11,7 @@ const StyledHome = styled.div`
       display: flex;
       align-content: center;
       justify-content: center;
-      height: 150px;
+      height: 140px;
       flex-shrink: 0;
 
       .main-text-content {
