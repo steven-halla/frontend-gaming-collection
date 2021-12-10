@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -11,6 +11,7 @@ import {getAuthToken, setAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
+
 
 export const App = () => {
   const [user, setUser] = useState(null);
