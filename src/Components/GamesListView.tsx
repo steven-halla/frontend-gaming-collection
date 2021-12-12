@@ -1,8 +1,9 @@
-import React, {useState} from "react"
+import React, {FC, useState} from "react"
 import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
+import {Game, GamesOwned} from "../model/Game";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -42,8 +43,7 @@ const StyledGameListView = styled.div`
             overflow: hidden;
           }
         }
-
-
+        
         // overrides for if owned. this css selector will match any element that has BOTH the games-list-item class AND the owned class (e.g. className="games-list-item owned")
         &.owned {
           .paper {
@@ -59,7 +59,15 @@ const StyledGameListView = styled.div`
   }
 `
 
-export const GamesListView = (props) => {
+interface GamesListViewProps {
+  games: Game[];
+  game: Game;
+  gamesOwned: GamesOwned;
+  addGameToCollection: any;
+  deleteGameFromCollection: GamesOwned[];
+}
+
+export const GamesListView: FC<GamesListViewProps> = (props) => {
   const {games, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,7 +115,15 @@ export const GamesListView = (props) => {
   );
 }
 
-const GameListItem = (props) => {
+interface GameListItemProps {
+  game: Game;
+  gamesOwned: GamesOwned;
+  gameOwned:  GamesOwned[];
+  addGameToCollection: any;
+  deleteGameFromCollection: any;
+}
+
+const GameListItem: FC<GameListItemProps> = (props) => {
   const {game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   const filteredGamesOwned = gamesOwned.filter((gameOwned) => {
@@ -148,7 +164,6 @@ const GameListItem = (props) => {
               Remove
             </Button>
           )}
-
         </div>
       </Paper>
     </Grid>

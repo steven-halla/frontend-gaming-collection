@@ -90,18 +90,6 @@ export const ProfileView = (props) => {
       }
     });
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-  }
-
-  const onDeleteGameFromCollection = () => {
-    deleteGameFromCollection();
-  }
-
-
-
   return (
     <StyledProfileView>
       <div className="profile-info">
@@ -127,7 +115,7 @@ export const ProfileView = (props) => {
 
       <Grid container spacing={2}>
           {gamesOwned.map((ownedGame) => {
-            const {id: gamesOwnedId, game, owner_rating, review} = ownedGame;
+            const {id:  game, owner_rating, review} = ownedGame;
 
             const onDeleteGameFromCollection = () => {
               deleteGameFromCollection(game.id);
