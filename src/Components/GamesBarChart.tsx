@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
-export const GamesBarChart = (props) => {
+interface GamesBarChartProps {
+  data: any;
+}
+
+
+export const GamesBarChart: FC<GamesBarChartProps> = (props) => {
   const {data} = props;
     return (
         <BarChart width={640} height={480} data={data}>
