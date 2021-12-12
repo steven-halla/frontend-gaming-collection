@@ -102,7 +102,6 @@ export const GamesListView = (props) => {
             />
           )}
         </Grid>
-
       </div>
     </StyledGameListView>
   );
