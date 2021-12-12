@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pie, PieChart, ResponsiveContainer, Tooltip} from 'recharts';
+import {Pie, PieChart, Tooltip} from 'recharts';
 
 export const GamesPieChart = (props) => {
   const {data, width = 400, height = 400} = props;
