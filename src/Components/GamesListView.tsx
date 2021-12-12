@@ -117,8 +117,8 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
 
 interface GameListItemProps {
   game: Game;
-  gamesOwned: GamesOwned;
-  gameOwned:  GamesOwned[];
+  gamesOwned: [];
+  gameOwned: Game;
   addGameToCollection: any;
   deleteGameFromCollection: any;
 }
