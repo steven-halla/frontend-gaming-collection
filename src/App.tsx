@@ -110,21 +110,7 @@ export const App = () => {
     let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/users/${userId}/`)
     setGamesOwned(response.data);
   }
-  //
-  // const getAllGameReviews = async (gameId) => {
-  //   console.log("get all games owned function start, user: " + gameId);
-  //   const response = await axios.get(`http://127.0.0.1:8000/api/games_owned/games/${gameId}/`)
-  //   setGamesOwned(response.data);
-  // }
 
-  // const updateGameReviews = async (gamesOwnedId, review, rating) => {
-  //
-  //   const request = {
-  //     owner_review: review,
-  //     rating: rating
-  //   };
-  //   const response = await axios.patch(`http://127.0.0.1:8000/api/games_owned/${gamesOwnedId}/`, request)
-  // }
 
   const addGameToCollection = async (gameId) => {
     try {
