@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import styled from "styled-components";
 
 const StyledHome = styled.div`
@@ -85,7 +85,7 @@ const StyledHome = styled.div`
   }
 `
 
-export const Home = (props) => {
+export const Home: FC = () => {
   return (
     <StyledHome>
       <div className="wrapper">
@@ -166,5 +166,5 @@ export const Home = (props) => {
         </div>
       </div>
     </StyledHome>
-  )
+  );
 }

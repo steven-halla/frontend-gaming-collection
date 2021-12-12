@@ -30,6 +30,7 @@
     "web-vitals": "^1.1.2"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.17",
     "axios": "^0.24.0",
     "react-scripts": "^4.0.3"
   },
