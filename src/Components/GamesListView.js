@@ -30,7 +30,6 @@ const StyledGameListView = styled.div`
 
           :hover {
             background-color: #eee;
-            //border: 2px solid black;
             box-shadow: 5px 5px gray;
           }
         }
@@ -38,19 +37,9 @@ const StyledGameListView = styled.div`
         .game-content {
           padding: 15px;
           letter-spacing: 1px;
-
-          //object-fit: and object cover;create div for image container 
-
+          
           .image-container {
-            //max-height: 50px;
-            //  max-width: 30px;
             overflow: hidden;
-
-            img {
-
-              //overflow: hidden;
-
-            }
           }
         }
 
