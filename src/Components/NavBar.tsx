@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {deleteAuthToken} from "../Auth";
 import {useNavigate} from "react-router";
 import styled from "styled-components";
+import {User} from "../model/User";
 
 const StyledNavBar = styled.div`
   .links {
@@ -40,14 +41,20 @@ const StyledNavBar = styled.div`
   }
 `;
 
-export const NavBar = (props) => {
+interface NavBarProps {
+  user: User;
+  setUser: (user: User | undefined) => void;
+  // isCool: (user: User) => boolean;
+}
+
+export const NavBar = (props: NavBarProps) => {
   const {user, setUser} = props;
 
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
     deleteAuthToken();
-    setUser(null);
+    setUser(undefined);
     navigate("");
   }
 

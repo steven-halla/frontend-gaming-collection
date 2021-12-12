@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from "styled-components";
 import axios from "axios";
 import {Button, Grid, Paper} from "@mui/material";
 import {useParams} from "react-router";
+import {Game} from "../model/Game";
 
 const StyledGameView = styled.div `
   &.game { 
@@ -16,19 +17,18 @@ const StyledGameView = styled.div `
   }
 `
 
-export const GameView = (props) => {
-  const {addGameToCollection} = props;
-  const [game, setGame] = useState(null);
+export const GameView: FC = () => {
+  const [game, setGame] = useState<Game>();
   const { id: gameId } = useParams();
 
   useEffect(() => {
-    getGame(gameId);
+    loadGame(Number(gameId));
 
   }, []);
 
-  const getGame = async (gameId) => {
+  const loadGame = async (gameId: number) => {
     console.log("get all games owned function start, user: " + gameId);
-    let response = await axios.get(`http://127.0.0.1:8000/api/games/${gameId}/`)
+    let response = await axios.get(`http://127.0.0.1:8000/api/games/${gameId}/`);
     setGame(response.data);
   }
 
