@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC, PropsWithChildren, ReactNode} from "react";
 import {Link} from "react-router-dom";
 import {deleteAuthToken} from "../Auth";
 import {useNavigate} from "react-router";
@@ -47,7 +47,7 @@ interface NavBarProps {
   // isCool: (user: User) => boolean;
 }
 
-export const NavBar = (props: NavBarProps) => {
+export const NavBar: FC<NavBarProps> = (props) => {
   const {user, setUser} = props;
 
   const navigate = useNavigate();
