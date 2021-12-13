@@ -60,6 +60,7 @@ export const Login: FC = () => {
       <LoginDiv>
         <div className="login-container">
           <div className="login-box">
+            {/*drill into on submit and on change to find the types for formevent handler and changeevent handler*/}
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">username</label>
               <input className="input"
