@@ -1,4 +1,5 @@
 
+export type Year = number;
 
 export interface Game {
   id: number;
@@ -7,7 +8,7 @@ export interface Game {
   genre: string;
   image : string;
   system: string;
-  release_date: number;
+  release_date: Year;
   value: number;
   rating: number;
 }

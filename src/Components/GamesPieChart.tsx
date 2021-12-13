@@ -3,8 +3,8 @@ import {Pie, PieChart, Tooltip} from 'recharts';
 
 interface GamesPieChartProps {
   data: any;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export const GamesPieChart: FC<GamesPieChartProps> = (props) => {
