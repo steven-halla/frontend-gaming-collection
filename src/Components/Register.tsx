@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import styled from "styled-components";
 import {Button} from "@mui/material";
+import {CreateUserRequest} from "../model/User";
 
 const RegisterDiv = styled.div`
 
@@ -36,7 +37,7 @@ const RegisterDiv = styled.div`
 }
 `
 
-export const Register = (props) => {
+export const Register: FC<CreateUserRequest> = (props) => {
   const [registerRequest, setRegisterRequest] = useState({
     username : "",
     password : "",
@@ -47,7 +48,7 @@ export const Register = (props) => {
     favorite_game : ""
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { name: any; value: any; }; }) => {
     setRegisterRequest(previousState => (
       {...previousState,
       [event.target.name] : event.target.value
@@ -55,7 +56,7 @@ export const Register = (props) => {
     ));
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     props.registerUser(registerRequest);
   }
