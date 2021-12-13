@@ -62,7 +62,7 @@ const StyledGameListView = styled.div`
 interface GamesListViewProps {
   games: Game[];
   game: Game;
-  gamesOwned: GamesOwned;
+  gamesOwned: GamesOwned[];
   addGameToCollection: any;
   deleteGameFromCollection: GamesOwned[];
 }
@@ -107,7 +107,7 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
               gamesOwned={gamesOwned}
               addGameToCollection={addGameToCollection}
               deleteGameFromCollection={deleteGameFromCollection}
-            />
+             gameOwned={game}/>
           )}
         </Grid>
       </div>
@@ -117,7 +117,7 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
 
 interface GameListItemProps {
   game: Game;
-  gamesOwned: [];
+  gamesOwned: GamesOwned[];
   gameOwned: Game;
   addGameToCollection: any;
   deleteGameFromCollection: any;
