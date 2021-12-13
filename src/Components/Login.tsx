@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {Button} from "@mui/material";
+import {FC} from "react";
+import {SignInRequest} from "../model/User";
 
 const LoginDiv = styled.div`
 
@@ -37,10 +39,10 @@ const LoginDiv = styled.div`
 }
 `
 
-export const Login = (props) => {
+export const Login: FC<SignInRequest> = (props) => {
   const [loginRequest, setLoginRequest] = useState({username: "", password: ""});
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { name: any; value: any; }; }) => {
     console.log("Inside handle Change")
     setLoginRequest( previousState => ({
       ...previousState,
@@ -48,7 +50,7 @@ export const Login = (props) => {
     }));
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     console.log("Inside Handle Submit", loginRequest);

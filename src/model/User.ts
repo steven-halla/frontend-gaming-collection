@@ -8,3 +8,7 @@ export interface User {
   favorite_game: string;
 }
 
+export interface SignInRequest {
+  username: string;
+  password: string;
+}
