@@ -9,6 +9,7 @@ export interface User {
 }
 
 export interface SignInRequest {
+  loginUser: any;
   username: string;
   password: string;
 }
