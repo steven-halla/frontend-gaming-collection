@@ -3,7 +3,8 @@ import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
-import {Game, GamesOwned} from "../model/Game";
+import {Game} from "../model/Game";
+import {GamesOwned} from "../model/GamesOwned";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;

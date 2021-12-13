@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import _ from "lodash";

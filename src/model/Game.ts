@@ -12,9 +12,3 @@ export interface Game {
   rating: number;
 }
 
-export interface GamesOwned {
-  id: number;
-  game: Game;
-  owner_rating: number;
-  review: string;
-}

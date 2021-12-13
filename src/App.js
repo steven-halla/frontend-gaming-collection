@@ -7,11 +7,10 @@ import {Register} from "./Components/Register";
 import {Login} from "./Components/Login";
 import {Home} from "./Components/Home";
 import {NavBar} from "./Components/NavBar";
-import {getAuthToken, setAuthToken} from "./Auth";
+import {getAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
-
 
 export const App = () => {
   const [user, setUser] = useState(null);
@@ -68,38 +67,6 @@ export const App = () => {
     }
   }
 
-  const loginUser = async (loginRequest) => {
-    console.log("Inside loginUser function app.js");
-    console.log("loginRequest", loginRequest);
-    try {
-      // first login
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginRequest);
-      console.log("login response", response);
-      setAuthToken(response.data.access);
-      window.location = '/';
-    } catch (error) {
-      console.log('error with logged in user', error);
-      return error
-    }
-  }
-
-  const registerUser = async (registerRequest) => {
-    console.log(registerRequest)
-    try {
-      console.log("try clause")
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/register/', registerRequest);
-      console.log("line 78");
-      await loginUser({
-        'username': registerRequest.username,
-        'password': registerRequest.password
-      });
-      console.log(registerRequest);
-      window.location = '/';
-    } catch (error) {
-      console.log(error, 'error with register user');
-    }
-  }
-
   const getAllGames = async () => {
     console.log("get all games function start");
     return axios.get(`http://127.0.0.1:8000/api/games/`);
@@ -142,8 +109,8 @@ export const App = () => {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
-            <Route exact path="/register" element={<Register registerUser={registerUser}/>}/>
-            <Route exact path="/login" element={<Login loginUser={loginUser}/>}/>
+            <Route exact path="/register" element={<Register />}/>
+            <Route exact path="/login" element={<Login />}/>
             <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGameFromCollection={deleteGameFromCollection} /> }/>
             <Route exact path="/games" element={<GamesListView
               games={games}
