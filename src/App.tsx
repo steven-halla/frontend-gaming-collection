@@ -40,10 +40,6 @@ export const App = () => {
     getAllGamesOwned(userId);
   }, []);
 
-  // useEffect((gameId) => {
-  //   getAllGameReviews(gameId);
-  // }, []);
-
   const getLoggedInUserId = () => {
     const token = getAuthToken();
     if (!token) {
@@ -52,6 +48,7 @@ export const App = () => {
     }
     const decodedJwt = jwtDecode(token);
     console.log("decodedJwt", decodedJwt);
+    // @ts-ignore
     return decodedJwt.user_id;
   }
 
