@@ -11,6 +11,7 @@ import {getAuthToken} from "./Auth";
 import {GamesListView} from "./Components/GamesListView";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
+import {User} from "./model/User";
 
 export const App = () => {
   const [user, setUser] = useState(null);
@@ -52,7 +53,9 @@ export const App = () => {
     return decodedJwt.user_id;
   }
 
-  const getUser = async (userId) => {
+
+
+  const getUser = async (userId: number) => {
     // const jwt = localStorage.getItem('token');
     console.log("User id", userId)
     try {
@@ -69,25 +72,26 @@ export const App = () => {
     return axios.get(`http://127.0.0.1:8000/api/games/`);
   }
 
-  const getAllGamesOwned = async (userId) => {
+  const getAllGamesOwned = async (userId: number) => {
     console.log("get all games owned function start, user: " + userId);
     let response = await axios.get(`http://127.0.0.1:8000/api/games_owned/users/${userId}/`)
     setGamesOwned(response.data);
   }
 
-
-  const addGameToCollection = async (gameId) => {
+// added user id to async
+  const addGameToCollection = async (user: User, gameId: number) => {
     try {
       const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
       console.log("adding game to your collection");
       getAllGamesOwned(user.id);
+      console.log(response);
 
     } catch (ex) {
       console.log('erorr in add call', ex);
     }
   }
 
-  const deleteGameFromCollection = async (gameId) => {
+  const deleteGameFromCollection = async (gameId: number) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
       console.log("i just did an axios call for delete")
