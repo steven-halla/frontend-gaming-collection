@@ -126,7 +126,7 @@ interface GameListItemProps {
   game: Game;
   gamesOwned: GamesOwned[];
   gameOwned: Game;
-  addGameToCollection: (gameId: number) => void;
+  addGameToCollection: (user: User, gameId: number) => void;
   deleteGameFromCollection: (userId: number, gameId: number) => void;
 }
 
@@ -139,7 +139,7 @@ const GameListItem: FC<GameListItemProps> = (props) => {
   const isGameOwned = filteredGamesOwned.length > 0;
 
   const onAddGameToCollection = () => {
-    addGameToCollection(game.id);
+    addGameToCollection(user, game.id);
   }
 
   const onDeleteGameFromCollection = () => {
