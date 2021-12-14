@@ -48,7 +48,7 @@ const StyledProfileView = styled.div`
 interface ProfileViewProps {
   user: User;
   gamesOwned: GamesOwned[];
-  deleteGameFromCollection: any;
+  deleteGameFromCollection: (gamesOwned: GamesOwned[]) => void;
   // ownedGame: Game;
 }
 
