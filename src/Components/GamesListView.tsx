@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import clsx from "clsx";
 import {Game} from "../model/Game";
 import {GamesOwned} from "../model/GamesOwned";
+import {User} from "../model/User";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -63,6 +64,7 @@ const StyledGameListView = styled.div`
 interface GamesListViewProps {
   games: Game[];
   // game: Game;
+  user: User;
   gamesOwned: GamesOwned[];
   addGameToCollection: any;
   deleteGameFromCollection: any;
@@ -71,7 +73,7 @@ interface GamesListViewProps {
 }
 
 export const GamesListView: FC<GamesListViewProps> = (props) => {
-  const {games, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
+  const {user, games, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -106,6 +108,7 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
         <Grid className="games-list" container spacing={2}>
           {filteredGames.map((game) =>
             <GameListItem
+              user={user}
               game={game}
               gamesOwned={gamesOwned}
               addGameToCollection={addGameToCollection}
@@ -119,6 +122,7 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
 }
 
 interface GameListItemProps {
+  user: User;
   game: Game;
   gamesOwned: GamesOwned[];
   gameOwned: Game;
@@ -127,7 +131,7 @@ interface GameListItemProps {
 }
 
 const GameListItem: FC<GameListItemProps> = (props) => {
-  const {game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
+  const {user, game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
 
   const filteredGamesOwned = gamesOwned.filter((gameOwned) => {
     return gameOwned.game.id === game.id
@@ -139,7 +143,7 @@ const GameListItem: FC<GameListItemProps> = (props) => {
   }
 
   const onDeleteGameFromCollection = () => {
-    deleteGameFromCollection(game.id);
+    deleteGameFromCollection(user.id, game.id);
   }
 
   return (

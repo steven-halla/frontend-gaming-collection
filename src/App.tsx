@@ -118,6 +118,7 @@ export const App = () => {
               deleteGameFromCollection={deleteGameFromCollection}
             />}/>
             <Route path="/games" element={<GamesListView
+              user={user}
               games={games}
               gamesOwned={gamesOwned}
               addGameToCollection={addGameToCollection}
