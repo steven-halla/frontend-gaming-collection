@@ -6,7 +6,7 @@ import {Button, Grid, Paper} from "@mui/material";
 import {User} from "../model/User";
 import {GamesOwned} from "../model/GamesOwned";
 import _ from "lodash";
-import {Game, Year} from "../model/Game";
+import {Year} from "../model/Game";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const StyledProfileView = styled.div`
 interface ProfileViewProps {
   user: User;
   gamesOwned: GamesOwned[];
-  deleteGameFromCollection: (gamesOwned: GamesOwned[]) => void;
+  deleteGameFromCollection: (userId: number, gameId: number) => void;
   // ownedGame: Game;
 }
 
@@ -150,7 +150,7 @@ export const ProfileView: FC<ProfileViewProps> = (props) => {
               const {game, owner_rating, review} = ownedGame;
 
               const onDeleteGameFromCollection = () => {
-                deleteGameFromCollection(game.id);
+                deleteGameFromCollection(user.id, game.id);
               }
 
               return (
@@ -164,8 +164,12 @@ export const ProfileView: FC<ProfileViewProps> = (props) => {
                           <p>Review: {review}</p>
                           <p>Genre: {game.genre}</p>
                           <p>Value: {game.value}</p>
-                          <Button variant="outlined"
-                                  onClick={onDeleteGameFromCollection}>Delete</Button>
+                          <Button
+                            variant="outlined"
+                            onClick={onDeleteGameFromCollection}
+                          >
+                            Delete
+                          </Button>
                         </div>
                       </td>
                     </tr>

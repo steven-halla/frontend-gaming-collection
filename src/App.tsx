@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -55,7 +55,6 @@ export const App = () => {
   }
 
 
-
   const getUser = async (userId: number) => {
     // const jwt = localStorage.getItem('token');
     console.log("User id", userId)
@@ -92,9 +91,9 @@ export const App = () => {
     }
   }
 
-  const deleteGameFromCollection = async (game: Game, user: User, gameId: number) => {
+  const deleteGameFromCollection = async (userId: number, gameId: number) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
+      await axios.delete(`http://127.0.0.1:8000/api/games_owned/users/${userId}/games/${gameId}/`);
       console.log("i just did an axios call for delete")
       setGamesOwned(
         gamesOwned.filter(gameOwned => gameOwned.game.id !== gameId)
@@ -108,19 +107,23 @@ export const App = () => {
     <div>
       <header>
         <Router>
-          <NavBar user={user} setUser={setUser} />
+          <NavBar user={user} setUser={setUser}/>
           <Routes>
-            <Route  path="/" element={<Home />}/>
-            <Route  path="/register" element={<Register />}/>
-            <Route  path="/login" element={<Login />}/>
-            <Route  path="/profile" element={<ProfileView  user={user} gamesOwned={gamesOwned} deleteGameFromCollection={deleteGameFromCollection} /> }/>
-            <Route  path="/games" element={<GamesListView
+            <Route path="/" element={<Home/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/profile" element={<ProfileView
+              user={user}
+              gamesOwned={gamesOwned}
+              deleteGameFromCollection={deleteGameFromCollection}
+            />}/>
+            <Route path="/games" element={<GamesListView
               games={games}
               gamesOwned={gamesOwned}
               addGameToCollection={addGameToCollection}
               deleteGameFromCollection={deleteGameFromCollection}
             />}/>
-            <Route  path="/games/:id" element={<GameView />}/>
+            <Route path="/games/:id" element={<GameView/>}/>
           </Routes>
         </Router>
       </header>
