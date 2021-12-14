@@ -17,7 +17,7 @@ import {Game} from "./model/Game";
 export const App = () => {
   const [user, setUser] = useState<any>(null);
   const [games, setGames] = useState<any>([]);
-  const [gamesOwned, setGamesOwned] = useState([]);
+  const [gamesOwned, setGamesOwned] = useState<any[]>([]);
 
   useEffect(() => {
     const userId = getLoggedInUserId();
