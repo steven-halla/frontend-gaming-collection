@@ -12,10 +12,11 @@ import {GamesListView} from "./Components/GamesListView";
 import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
 import {User} from "./model/User";
+import {Game} from "./model/Game";
 
 export const App = () => {
-  const [user, setUser] = useState(null);
-  const [games, setGames] = useState([]);
+  const [user, setUser] = useState<any>(null);
+  const [games, setGames] = useState<any>([]);
   const [gamesOwned, setGamesOwned] = useState([]);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ export const App = () => {
     }
   }
 
-  const deleteGameFromCollection = async (gameId: number) => {
+  const deleteGameFromCollection = async (game: Game, user: User, gameId: number) => {
     try {
       await axios.delete(`http://127.0.0.1:8000/api/games_owned/users/${user.id}/games/${gameId}/`);
       console.log("i just did an axios call for delete")
@@ -109,17 +110,17 @@ export const App = () => {
         <Router>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route exact path="/" element={<Home user={user} setUser={setUser}/>}/>
-            <Route exact path="/register" element={<Register />}/>
-            <Route exact path="/login" element={<Login />}/>
-            <Route exact path="/profile" element={<ProfileView user={user} gamesOwned={gamesOwned} deleteGameFromCollection={deleteGameFromCollection} /> }/>
-            <Route exact path="/games" element={<GamesListView
+            <Route  path="/" element={<Home />}/>
+            <Route  path="/register" element={<Register />}/>
+            <Route  path="/login" element={<Login />}/>
+            <Route  path="/profile" element={<ProfileView  user={user} gamesOwned={gamesOwned} deleteGameFromCollection={deleteGameFromCollection} /> }/>
+            <Route  path="/games" element={<GamesListView
               games={games}
               gamesOwned={gamesOwned}
               addGameToCollection={addGameToCollection}
               deleteGameFromCollection={deleteGameFromCollection}
             />}/>
-            <Route exact path="/games/:id" element={<GameView />}/>
+            <Route  path="/games/:id" element={<GameView />}/>
           </Routes>
         </Router>
       </header>

@@ -49,7 +49,7 @@ interface ProfileViewProps {
   user: User;
   gamesOwned: GamesOwned[];
   deleteGameFromCollection: any;
-  ownedGame: Game;
+  // ownedGame: Game;
 }
 
 export const ProfileView: FC<ProfileViewProps> = (props) => {
