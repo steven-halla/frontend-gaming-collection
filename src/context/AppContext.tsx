@@ -22,7 +22,7 @@ interface AppContextState {
   gameOwned?: GamesOwned;
   setGameOwned: (gameOwned?: GamesOwned) => void;
 
-  gamesOwned?: GamesOwned;
+  gamesOwned?: GamesOwned[];
   setGamesOwned: (gamesOwned: GamesOwned[]) => void;
 }
 
@@ -31,11 +31,11 @@ export const AppContext = React.createContext({} as AppContextState);
 
 export const AppContextProvider: FC = (props) => {
   const [game, setGame] = useState<Game>();
-  const [games, setGames] = useState<Game[]>();
+  const [games, setGames] = useState<Game[]>([]);
   const [user, setUser] = useState<User>();
-  const [users, setUsers] = useState<User[]>();
+  const [users, setUsers] = useState<User[]>([]);
   const [gameOwned, setGameOwned] = useState<GamesOwned>();
-  const [gamesOwned, setGamesOwned] = useState<GamesOwned>();
+  const [gamesOwned, setGamesOwned] = useState<GamesOwned[]>([]);
 
   return (
       <AppContext.Provider
@@ -49,6 +49,7 @@ export const AppContextProvider: FC = (props) => {
 
   }}
         >
+        {props.children}
 
       </AppContext.Provider>
   );
