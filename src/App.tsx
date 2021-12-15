@@ -13,6 +13,7 @@ import {ProfileView} from "./Components/ProfileView";
 import {GameView} from "./Components/GameView";
 import {User} from "./model/User";
 import {Game} from "./model/Game";
+import {AppContextProvider} from "./context/AppContext";
 
 export const App = () => {
   const [user, setUser] = useState<any>(null);
@@ -106,27 +107,29 @@ export const App = () => {
   return (
     <div>
       <header>
-        <Router>
-          <NavBar user={user} setUser={setUser}/>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/profile" element={<ProfileView
-              user={user}
-              gamesOwned={gamesOwned}
-              deleteGameFromCollection={deleteGameFromCollection}
-            />}/>
-            <Route path="/games" element={<GamesListView
-              user={user}
-              games={games}
-              gamesOwned={gamesOwned}
-              addGameToCollection={addGameToCollection}
-              deleteGameFromCollection={deleteGameFromCollection}
-            />}/>
-            <Route path="/games/:id" element={<GameView/>}/>
-          </Routes>
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <NavBar user={user} setUser={setUser}/>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/profile" element={<ProfileView
+                user={user}
+                gamesOwned={gamesOwned}
+                deleteGameFromCollection={deleteGameFromCollection}
+              />}/>
+              <Route path="/games" element={<GamesListView
+                user={user}
+                games={games}
+                gamesOwned={gamesOwned}
+                addGameToCollection={addGameToCollection}
+                deleteGameFromCollection={deleteGameFromCollection}
+              />}/>
+              <Route path="/games/:id" element={<GameView/>}/>
+            </Routes>
+          </Router>
+        </AppContextProvider>
       </header>
     </div>
   );
