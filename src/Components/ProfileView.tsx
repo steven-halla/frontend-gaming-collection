@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useContext, useEffect} from 'react';
 import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import styled from "styled-components";
@@ -7,6 +7,8 @@ import {User} from "../model/User";
 import {GamesOwned} from "../model/GamesOwned";
 import _ from "lodash";
 import {Year} from "../model/Game";
+import {AppContext} from "../context/AppContext";
+import {getLoggedInUserId} from "../Auth";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -45,17 +47,16 @@ const StyledProfileView = styled.div`
   }
 `
 
-interface ProfileViewProps {
-  user: User;
-  gamesOwned: GamesOwned[];
-  deleteGameFromCollection: (userId: number, gameId: number) => void;
-  // ownedGame: Game;
-}
+export const ProfileView: FC = () => {
 
-export const ProfileView: FC<ProfileViewProps> = (props) => {
-  const {user, gamesOwned, deleteGameFromCollection} = props;
+  const {user, gamesOwned, getAllGamesOwned, deleteGameFromCollection} = useContext(AppContext);
+
+  useEffect(() => {
+    const userId = getLoggedInUserId();
+    getAllGamesOwned(userId);
+  }, []);
+
   console.log(gamesOwned);
-
 
   const totalGameValue = gamesOwned
     .map(ownedGame => ownedGame.game.value)
@@ -67,6 +68,10 @@ export const ProfileView: FC<ProfileViewProps> = (props) => {
       value: ownedGame.game.value
     }))
     .sort((a, b) => a.value - b.value);
+
+  if (!user) {
+    return <>Loading</>;
+  }
 
   // group the gamesOwned[] by release date
   // This will generate a object with keys that are the date and the value you will an ownedGame.

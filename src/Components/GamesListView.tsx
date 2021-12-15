@@ -1,11 +1,12 @@
-import React, {FC, useState} from "react"
+import React, {FC, useContext, useEffect, useState} from "react"
 import styled from "styled-components";
 import {Button, Grid, Paper, TextField} from "@mui/material";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
 import {Game} from "../model/Game";
-import {GamesOwned} from "../model/GamesOwned";
-import {User} from "../model/User";
+import {AppContext} from "../context/AppContext";
+import {useGetAllGames} from "../hooks/useGetAllGames";
+import {useGetAllGamesOwned} from "../hooks/useGetAllGamesOwned";
 
 const StyledGameListView = styled.div`
   margin-left: 10px;
@@ -40,12 +41,12 @@ const StyledGameListView = styled.div`
         .game-content {
           padding: 15px;
           letter-spacing: 1px;
-          
+
           .image-container {
             overflow: hidden;
           }
         }
-        
+
         // overrides for if owned. this css selector will match any element that has BOTH the games-list-item class AND the owned class (e.g. className="games-list-item owned")
         &.owned {
           .paper {
@@ -61,19 +62,11 @@ const StyledGameListView = styled.div`
   }
 `
 
-interface GamesListViewProps {
-  games: Game[];
-  // game: Game;
-  user: User;
-  gamesOwned: GamesOwned[];
-  addGameToCollection: any;
-  deleteGameFromCollection: any;
-  // deleteGameFromCollection: GamesOwned[];
+export const GamesListView: FC = (props) => {
 
-}
+  const games = useGetAllGames();
 
-export const GamesListView: FC<GamesListViewProps> = (props) => {
-  const {user, games, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
+  useGetAllGamesOwned();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -108,12 +101,8 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
         <Grid className="games-list" container spacing={2}>
           {filteredGames.map((game) =>
             <GameListItem
-              user={user}
               game={game}
-              gamesOwned={gamesOwned}
-              addGameToCollection={addGameToCollection}
-              deleteGameFromCollection={deleteGameFromCollection}
-             gameOwned={game}/>
+            />
           )}
         </Grid>
       </div>
@@ -122,16 +111,15 @@ export const GamesListView: FC<GamesListViewProps> = (props) => {
 }
 
 interface GameListItemProps {
-  user: User;
   game: Game;
-  gamesOwned: GamesOwned[];
-  gameOwned: Game;
-  addGameToCollection: (user: User, gameId: number) => void;
-  deleteGameFromCollection: (userId: number, gameId: number) => void;
 }
 
 const GameListItem: FC<GameListItemProps> = (props) => {
-  const {user, game, gamesOwned, addGameToCollection, deleteGameFromCollection} = props;
+  const {game} = props;
+
+  const {user, gamesOwned, addGameToCollection, deleteGameFromCollection} = useContext(AppContext);
+
+  console.log(gamesOwned);
 
   const filteredGamesOwned = gamesOwned.filter((gameOwned) => {
     return gameOwned.game.id === game.id
@@ -139,11 +127,15 @@ const GameListItem: FC<GameListItemProps> = (props) => {
   const isGameOwned = filteredGamesOwned.length > 0;
 
   const onAddGameToCollection = () => {
-    addGameToCollection(user, game.id);
+    if (user) {
+      addGameToCollection(user.id, game.id);
+    }
   }
 
   const onDeleteGameFromCollection = () => {
-    deleteGameFromCollection(user.id, game.id);
+    if (user) {
+      deleteGameFromCollection(user.id, game.id);
+    }
   }
 
   return (

@@ -1,9 +1,9 @@
-import React, {FC, PropsWithChildren, ReactNode} from "react";
+import React, {FC, useContext} from "react";
 import {Link} from "react-router-dom";
 import {deleteAuthToken} from "../Auth";
 import {useNavigate} from "react-router";
 import styled from "styled-components";
-import {User} from "../model/User";
+import {AppContext} from "../context/AppContext";
 
 const StyledNavBar = styled.div`
   .links {
@@ -13,26 +13,26 @@ const StyledNavBar = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    
+
     .link {
       padding: 10px;
       font-family: "Impact";
       font-size: x-large;
-      
+
       a {
         color: black;
         text-decoration: none;
-        
+
         :visited {
           text-decoration: none;
         }
       }
-      
+
       :last-child {
         margin-left: auto;
       }
     }
-    
+
     .app-title {
       font-family: sans-serif;
       font-size: x-large;
@@ -41,14 +41,9 @@ const StyledNavBar = styled.div`
   }
 `;
 
-interface NavBarProps {
-  user: User;
-  setUser: (user: User | undefined) => void;
-  // isCool: (user: User) => boolean;
-}
+export const NavBar: FC = () => {
 
-export const NavBar: FC<NavBarProps> = (props) => {
-  const {user, setUser} = props;
+  const {user, setUser} = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -65,25 +60,25 @@ export const NavBar: FC<NavBarProps> = (props) => {
           <Link to="/">Home</Link>
         </div>
         <div className="link">
-          <Link to="/games">Games List View</Link>
+          <Link to="/games">Games</Link>
         </div>
-        <div className="link">
-          <Link to="/profile">Profile view</Link>
-        </div>
+        {user && (
+          <div className="link">
+            <Link to="/profile">Profile</Link>
+          </div>
+        )}
         <div className="app-title">
           <p>Game Booky</p>
         </div>
-        {
-          user != null ? (
-            <div className="link" onClick={() => handleLogoutClick()}>
-              <Link to="#">Logout</Link>
-            </div>
-          ) : (
-            <div className="link">
-              <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
-            </div>
-          )
-        }
+        {(user != null) ? (
+          <div className="link" onClick={() => handleLogoutClick()}>
+            <Link to="#">Logout</Link>
+          </div>
+        ) : (
+          <div className="link">
+            <Link to="/login">Login</Link> / <Link to="/register">Register</Link>
+          </div>
+        )}
       </div>
     </StyledNavBar>
   )
