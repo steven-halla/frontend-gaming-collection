@@ -50,6 +50,7 @@ export const AppContextProvider: FC = (props) => {
       const response = await axios.post(`http://127.0.0.1:8000/api/games_owned/users/${userId}/games/${gameId}/`);
       console.log("adding game to your collection");
       getAllGamesOwned(userId);
+      console.log(response);
 
     } catch (ex) {
       console.log('error in add call', ex);
