@@ -10,6 +10,8 @@ export interface RegisterRequest {
   middle_name: string;
 }
 
+//create service function in new file from services folder I need to do something simliar to this function
+// but i must also pass in a game id and use id
 export const registerUser = async (request: RegisterRequest) => {
   console.log(request);
   try {
