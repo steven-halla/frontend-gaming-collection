@@ -1,15 +1,14 @@
-import React, {ChangeEventHandler, FC, FormEventHandler, useContext, useEffect} from 'react';
+import React, {ChangeEvent, FC, FormEventHandler, useContext, useEffect, useState} from 'react';
 import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import styled from "styled-components";
 import {Button, Grid, Paper} from "@mui/material";
-import {User} from "../model/User";
 import {GamesOwned} from "../model/GamesOwned";
 import _ from "lodash";
 import {Year} from "../model/Game";
 import {AppContext} from "../context/AppContext";
 import {getLoggedInUserId} from "../Auth";
-import {registerUser} from "../service/registerUser";
+import {getGameValue} from "../service/getGameValue";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -127,11 +126,11 @@ export const ProfileView: FC = () => {
       };
     });
 
+
   return (
     <StyledProfileView>
       <div className="profile-info">
         <p>Welcome {user?.username}</p>
-        <p>My favorite game: {user?.favorite_game}</p>
         <p>Total value of collection is: {totalGameValue} </p>
       </div>
 
@@ -143,7 +142,7 @@ export const ProfileView: FC = () => {
           <h3>Game Count by Release Year</h3>
           <GamesBarChart data={gamesReleaseYearData}/>
         </div>
-        rfd
+
         <div className="game-value-by-system-data">
           <h3>Game Count by System</h3>
           <GamesBarChart data={gamesBySystemData}/>
@@ -153,16 +152,13 @@ export const ProfileView: FC = () => {
 
         <Grid container spacing={2}>
           {gamesOwned.map((ownedGame) => {
-              const {game, owner_rating, review} = ownedGame;
+              const {game, notes} = ownedGame;
 
               const onDeleteGameFromCollection = () => {
                 deleteGameFromCollection(user.id, game.id);
               }
 
-
-
-
-
+              const gameValue: number = getGameValue(ownedGame);
 
               return (
                 <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
@@ -170,21 +166,19 @@ export const ProfileView: FC = () => {
                     <tr>
                       <td>
                         <div className="returned-games">
+
                           <p>Title: {game.title}</p>
-                          <p>Rating: {owner_rating}</p>
-                          <p>Review: {review}</p>
                           <p>Genre: {game.genre}</p>
-                          <p>Value: {game.value}</p>
+                          <p><strong>${gameValue}</strong></p>
+                          <p>Notes: {notes}</p>
                           <Button
                             variant="outlined"
                             onClick={onDeleteGameFromCollection}
                           >
                             Delete
                           </Button>
-                          <form action="">
-                            <label htmlFor="">notes</label>
-                            <input type="text"/>
-                          </form>
+                          <NotesEdit userId={user.id} gameId={game.id} defaultNotes={ownedGame.notes} />
+                          <FixedValueEdit userId={user.id} gameId={game.id} defaultValue={gameValue} />
                         </div>
                       </td>
                     </tr>
@@ -197,4 +191,65 @@ export const ProfileView: FC = () => {
       </table>
     </StyledProfileView>
   )
+}
+
+
+interface FixedValueEditProps {
+  userId: number;
+  gameId: number;
+  defaultValue: number;
+}
+
+const FixedValueEdit: FC<FixedValueEditProps> = (props) => {
+  const {userId, gameId, defaultValue} = props;
+
+  const [fixedValue, setFixedValue] = useState<number>(defaultValue);
+
+  const onFixedValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFixedValue(Number(event.target.value));
+  }
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    console.log("Inside handle submit");
+    alert("update value to: " + fixedValue);
+  }
+
+  return (
+    <form action="" onSubmit={handleSubmit}>
+      <label htmlFor="">Value</label>
+      <input type="number" value={fixedValue} onChange={onFixedValueChange}/>
+      <button type="submit">Save</button>
+    </form>
+  );
+}
+
+
+interface NotesEditProps {
+  userId: number;
+  gameId: number;
+  defaultNotes: string;
+}
+
+const NotesEdit: FC<NotesEditProps> = (props) => {
+  const {userId, gameId, defaultNotes} = props;
+
+  const [notes, setNotes] = useState<string>(defaultNotes);
+
+  const onNoteChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNotes(event.target.value);
+  }
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    console.log("Inside handle submit");
+    alert("update notes to: " + notes);
+  }
+
+  return (
+    <form action="" onSubmit={handleSubmit}>
+      Note: <input type="text" value={notes} onChange={onNoteChange}/>
+      <button type="submit">Save</button>
+    </form>
+  );
 }
