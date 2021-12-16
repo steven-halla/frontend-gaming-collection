@@ -46,8 +46,7 @@ export const Register: FC = () => {
     email: "",
     first_name: "",
     last_name: "",
-    middle_name: "",
-    favorite_game: ""
+    middle_name: ""
   });
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -92,9 +91,7 @@ export const Register: FC = () => {
             <input className="Input" name="middle_name" value={registerRequest.middle_name} onChange={handleChange}
                    type="text"/>
             <br/>
-            <label htmlFor="">Favorite Game</label>
-            <input className="Input" name="favorite_game" value={registerRequest.favorite_game} onChange={handleChange}
-                   type="text"/>
+
             <Button variant="outlined" type="submit">Create Account</Button>
           </form>
         </div>
