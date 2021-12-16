@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect} from 'react';
+import React, {ChangeEventHandler, FC, FormEventHandler, useContext, useEffect} from 'react';
 import {GamesPieChart} from "./GamesPieChart";
 import {GamesBarChart} from "./GamesBarChart";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import _ from "lodash";
 import {Year} from "../model/Game";
 import {AppContext} from "../context/AppContext";
 import {getLoggedInUserId} from "../Auth";
+import {registerUser} from "../service/registerUser";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -158,6 +159,11 @@ export const ProfileView: FC = () => {
                 deleteGameFromCollection(user.id, game.id);
               }
 
+
+
+
+
+
               return (
                 <Grid key={game.id} item className="games-list-item" xs={12} md={6} lg={4} xl={3}>
                   <Paper elevation={4}>
@@ -175,6 +181,10 @@ export const ProfileView: FC = () => {
                           >
                             Delete
                           </Button>
+                          <form action="">
+                            <label htmlFor="">notes</label>
+                            <input type="text"/>
+                          </form>
                         </div>
                       </td>
                     </tr>
@@ -182,7 +192,7 @@ export const ProfileView: FC = () => {
                 </Grid>
               );
             }
-          )}
+          )};
         </Grid>
       </table>
     </StyledProfileView>
