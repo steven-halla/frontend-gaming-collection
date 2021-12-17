@@ -9,7 +9,9 @@ import {Year} from "../model/Game";
 import {AppContext} from "../context/AppContext";
 import {getLoggedInUserId} from "../Auth";
 import {getGameValue} from "../service/getGameValue";
-import {changeValue} from "../service/ChangeValue";
+import {updateOwnedGameValue} from "../service/updateOwnedGameValue";
+import {useGetAllGamesOwned} from "../hooks/useGetAllGamesOwned";
+import axios from "axios";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -204,17 +206,19 @@ interface FixedValueEditProps {
 const FixedValueEdit: FC<FixedValueEditProps> = (props) => {
   const {userId, gameId, defaultValue} = props;
 
+  const {getAllGamesOwned} = useContext(AppContext);
+
   const [fixedValue, setFixedValue] = useState<number>(defaultValue);
 
   const onFixedValueChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFixedValue(Number(event.target.value));
   }
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    console.log("Inside handle submit");
-    alert("update value to: " + fixedValue)
-    .then(changeValue(event));
+    await updateOwnedGameValue(userId, gameId, fixedValue);
+    await getAllGamesOwned(userId);
+    alert("update owned game value: " + fixedValue);
   }
 
   return (
