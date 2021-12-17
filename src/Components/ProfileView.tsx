@@ -213,8 +213,8 @@ const FixedValueEdit: FC<FixedValueEditProps> = (props) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     console.log("Inside handle submit");
-    alert("update value to: " + fixedValue);
-    changeValue();
+    alert("update value to: " + fixedValue)
+    .then(changeValue(event));
   }
 
   return (
