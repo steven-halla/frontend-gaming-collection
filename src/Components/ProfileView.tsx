@@ -9,6 +9,7 @@ import {Year} from "../model/Game";
 import {AppContext} from "../context/AppContext";
 import {getLoggedInUserId} from "../Auth";
 import {getGameValue} from "../service/getGameValue";
+import {changeValue} from "../service/ChangeValue";
 
 const StyledProfileView = styled.div`
   display: flex;
@@ -213,6 +214,7 @@ const FixedValueEdit: FC<FixedValueEditProps> = (props) => {
     event.preventDefault();
     console.log("Inside handle submit");
     alert("update value to: " + fixedValue);
+    changeValue();
   }
 
   return (
