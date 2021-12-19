@@ -11,7 +11,7 @@ export const useGetAllGamesOwned = (): GamesOwned[] => {
   // get all games owned each time the "user" state variable changes and is not null.
   useEffect(() => {
     if (user) {
-      getAllGamesOwned(user.id);
+      getAllGamesOwned(user.id)
     }
   }, [user]);
 
